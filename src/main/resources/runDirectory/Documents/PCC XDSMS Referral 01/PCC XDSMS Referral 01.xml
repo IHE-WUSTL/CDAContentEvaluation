@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:n1="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:voc="urn:hl7-org:v3/voc" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+    
+    <realmCode code="US"/>
+    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+    
+    <!-- These templates assert the level of conformance using HL7 History and Physical Header Specifications -->
+    <!-- CONF-HP-3 Level 1 asserts compliance with all general or non-level-specific constraints -->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.10"/>-->
+    <!-- CONF-HP-4 Level 2 asserts compliance with Level 1 requirements and asserts the presence of section codes-->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.20"/>-->
+    <!-- CONF-HP-5 Level 3 asserts compliance with Level 2 requirements and the use of CDA entries in some sections -->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.30"/>-->    
+    
+    <!-- Only include this template for a document that conforms to the US Realm -->
+    <templateId extension="HL7 General Header Constraints" root="2.16.840.1.113883.10.20.3"/>
+    <!-- PCC TF Vol2 6.3.1.1.3 -->
+    <templateId extension="Medical Document" root="1.3.6.1.4.1.19376.1.5.3.1.1.1"/>
+    <!-- PCC TF Vol2 6.3.1.2 -->
+    <templateId extension="Medical Summary" root="1.3.6.1.4.1.19376.1.5.3.1.1.2"/>
+    <templateId extension="Referral Summary" root="1.3.6.1.4.1.19376.1.5.3.1.1.3"/>
+  
+    <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="MSReferral_2010-1"/>
+
+    <code code="34133-9" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Summary of Episode Note"/>
+
+    <title>IHE Connectathon XDSMS Referral</title>
+
+    <effectiveTime value="20111101100000-0600"/>
+
+    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+
+    <languageCode code="en-US"/>
+
+    <recordTarget>
+    <patientRole>
+      <id extension="51_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.2"/>
+      <addr>
+        <streetAddressLine>22 Franklin Street</streetAddressLine>
+        <city>Chicago</city>
+        <state>IL</state>
+        <postalCode>12345</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom nullFlavor="UNK" use="HP"/>
+      <patient>
+        <name use="L">
+          <given qualifier="CL">Todd</given>
+          <family>Lincoln</family>
+        </name>
+        <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+        <birthTime value="19780704"/>
+        <raceCode code="101" codeSystem="2.16.840.1.113883.6.238" displayName="White"/>
+        <languageCommunication>
+          <languageCode nullFlavor="UNK"/>
+        </languageCommunication>
+      </patient>
+      <providerOrganization>
+        <id extension="47_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+        <name>Community Care Health Services</name>
+        <telecom value="tel:+1-(555)456-8765" use="WP"/>
+        <addr>
+          <streetAddressLine>123 Juniper Street</streetAddressLine>
+          <city>Chicago</city>
+          <state>IL</state>
+          <postalCode>12345</postalCode>
+          <country>US</country>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+
+    
+    <author>
+      <time value="20091223120000-0600"/>
+      <assignedAuthor>
+        <id root="1.3.6.1.4.1.22812.3.2" extension="1TW090"/>
+        <code code="SELF" codeSystem="2.16.840.1.113883.5.111" displayName="Self" codeSystemName="HL7"/>
+        <addr nullFlavor="UNK"/>
+        <telecom nullFlavor="UNK" use="WP"/>
+        <assignedPerson>
+          <name>
+            <prefix>Dr.</prefix>
+            <given>William</given>
+            <family>Morrison</family>
+          </name>
+        </assignedPerson>
+      </assignedAuthor>
+    </author>
+  
+    <author>
+      <time value="20091223120000-0600"/>
+      <assignedAuthor>
+        <id extension="42" root="1.3.6.1.4.1.22812.3.3"/>
+        <addr>
+          <streetAddressLine>790 Jorie Blvd</streetAddressLine>
+          <city>Oak Brook</city>
+          <state>IL</state>
+          <postalCode>60523</postalCode>
+          <country>US</country>
+        </addr>
+        <telecom value="tel:+1-(555)888-1234" use="WP"/>
+        <assignedAuthoringDevice>
+          <softwareName>Vapor 03</softwareName>
+        </assignedAuthoringDevice>
+        <representedOrganization>
+          <id extension="42" root="1.3.6.1.4.1.22812.3.1"/>
+          <name>New World Health</name>
+          <telecom value="tel:+1-(5558885-1234" use="WP"/>
+          <addr>
+            <streetAddressLine>790 Jorie Blvd</streetAddressLine>
+            <city>Oak Brook</city>
+            <state>IL</state>
+            <postalCode>60523</postalCode>
+            <country>US</country>
+          </addr>
+        </representedOrganization>
+      </assignedAuthor>
+    </author>
+    
+
+    <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="26_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+        <name>Greater Chicago HIE</name>
+        <telecom value="tel:+1-(555)777-1234" use="WP"/>
+        <addr>
+          <streetAddressLine>790 Jorie Blvd</streetAddressLine>
+          <city>Oak Brook</city>
+          <state>IL</state>
+          <postalCode>60523</postalCode>
+          <country>US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+
+    <authenticator>
+    <time value="20101013104100-0600"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id extension="38_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+      <addr nullFlavor="UNK"/>
+      <telecom nullFlavor="UNK" use="WP"/>
+      <assignedPerson>
+        <name>
+          <prefix>Dr.</prefix>
+          <given>Thomas</given>
+          <family>Jefferson</family>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </authenticator>
+
+    
+
+    
+
+    <documentationOf>
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="20101012160000-0600"/>
+        <high value="20101012164500-0600"/>
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.3"/>
+        <templateId root="2.16.840.1.113883.3.88.11.32.4"/>
+        <functionCode code="PP" codeSystem="2.16.840.1.113883.12.443"/>
+        <time>
+          <low/>
+          <high/>
+        </time>
+        <assignedEntity>
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="22_2010-01"/>
+          <code code="260000000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="ProviderCodes" displayName="Mount Vernon Hospital - Emergency Department"/>
+          <addr nullFlavor="UNK"/>
+          <telecom nullFlavor="UNK" use="WP"/>
+          <assignedPerson>
+            <name>
+              <prefix>Dr.</prefix>
+              <given>Thomas</given>
+              <family>Jefferson</family>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+
+    <componentOf>
+    <encompassingEncounter>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="31_2010-1"/>
+      <effectiveTime>
+        <low value="201010110900-0600"/>
+        <high value="201010131000-0600"/>
+      </effectiveTime>
+    </encompassingEncounter>
+  </componentOf>
+
+    <component>
+      <structuredBody>
+        <component>
+    <section>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.1"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ReasonForReferral_2010-1"/>
+      <code code="42349-1" displayName="REASON FOR REFERRAL" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>Reason For Referral</title>
+      <text>Patient is being referred for a second opinion.</text>
+                 
+    </section>
+  </component>
+
+        <component>
+    <section>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.4"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="HistoryOfPresentIllness_2010-1"/>
+      <code code="10164-2" displayName="HISTORY OF PRESENT ILLNESS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>HISTORY OF PRESENT ILLNESS</title>
+      <text> Patient has been experiencing pain for approximate 48 hours.</text>
+    </section>
+  </component>
+
+        <component>
+    <section>
+      <templateId root="2.16.840.1.113883.10.20.1.11"/> <!-- Parent template is CCD Problems (3.5) -->
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.6"/> <!-- Template of Active Problems section-->
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ActiveProblems_2010-1"/>
+      <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem List"/>
+      <title>Active Problems</title> <!-- must have the word "Problems" in the title - from CCD Problems parent.--> 
+      <text> 
+        <content ID="Problem_1">Back Pain. </content>
+      </text>
+      
+      <entry typeCode="COMP"> 
+        <act classCode="ACT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.27"/> <!-- The Parent of Concern Entry is CCD Problem Act -->
+          <!-- The subject of a Problem Act can be a Problem observation, Alert observation or some other clinical statement.-->
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/> <!-- The Parent is a Concern entry -->
+          <!-- The subject of Concern is a Problem observation or Alergy observation -->
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/> <!-- is a Problem Concern entry -->
+          <!-- A specialiation of the Concern entry where the subject of the Concern is a Problem. -->
+          <!-- Includes one or more Problem entry -->
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ActiveProblems_C1"/> <!-- required by Concern entry-->
+          <code nullFlavor="NA"/> <!-- specified by Concern entry -->
+          <statusCode code="active"/> <!-- Code established by Concern entry. The status of the concern can be: active|suspended|aborted|completed-->
+          <effectiveTime> <!-- Established by Problem Act, further defined by Concern entry - indicates the timing interval of the Concern -->
+            <low value="20111101"/>
+          </effectiveTime>
+          <!-- A Problem Concern has one or more Problem entries.-->
+          <entryRelationship typeCode="SUBJ" inversionInd="false">
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+              <!-- negationInd can be used to negate an observation when a pre-coordinated vocabulary is not available.-->
+              <templateId root="2.16.840.1.113883.10.20.1.28"/> <!-- the Parent is a CCD Problem Observation -->
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/> <!-- is a Problem entry -->
+              <!-- Problem entry makes use of Linking, Severity, Clinical Statement and Comment specification -->
+              <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ActiveProblems_C1P1"/> <!-- required by Problem entry -->
+              <!-- Lung Cancer -->
+              <code code="409586006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Complaint"/> 
+              <!-- Code is constrained by Problem Obervation to be from value set 2.16.840.1.113883.1.11.20.14 -->
+              <!-- The code for a Problem entry can be any code from SNOMED. The recommended set is: Condition, Symptom, Finding, Complaint, Functional Limitation, Problem, Diagnosis.-->
+              <!-- Problem entry requires linkages to the text associated with the code. This reference points to the free text describing the problem in the document that is being described. -->
+              <text>
+                <reference value="#problem_1"/>
+              </text>
+              <statusCode code="completed"/> <!-- required to be "completed" by CCD Problem Observation -->
+              <effectiveTime> <!-- should contain one effectiveTime --> <!-- Medical Summaries use only low and high values. Low estimates the onset and High estimates the time at which the observation was nolonger true.--> 
+                <low value="20111024"/>
+              </effectiveTime>
+              <!-- Problem entry requires a value. The value can be coded or uncoded. It must come from a controlled vocabulary such as ICD-9, SNOMED CT, Medcin, etc.-->
+              <!-- The value includes a reference to the original text in order to link the coded value to the problem narrative text. --> 
+              <value xsi:type="CD" code="XXXXXXXX" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Back Pain">
+                <originalText>
+                  <reference value="#problem_1"/>
+                </originalText>
+              </value>
+              <!-- Optional entryRelationship (typeCode="SUBJ" inversionInd="true") element for Severity of the problem. Conforms to Severity entry 1.3.6.1.4.1.19376.1.5.3.1.4.1 -->
+              <!-- Optional entryRelationship (typeCode=REFR inversionInd="false") element for Clinical Status of the problem. Conforms to Problem Status Observation 1.3.6.1.4.1.19376.1.5.3.1.4.1.1 -->
+              <!-- Optional entryRelationship (typeCode=REFR inversionInd="false") element for Health Status of the patient. Conforms to Health Status Observation 1.3.6.1.4.1.19376.1.5.3.1.4.1.2 -->
+              <!-- Optional entryRelationship (typeCode=SUBJ inversionInd="true") element for Comments about the problem. Conforms to Comment entry 1.3.6.1.4.1.19376.1.5.3.1.4.2 -->
+              <!-- From CCD Problem Observations: an Age observation May appear here-->
+              <!-- CCD Problem Observation requires a Source Observation. We don't find examples of this in supplied samples. How does NIST Validation check this?-->
+            </observation>
+          </entryRelationship>
+          
+        </act>
+      </entry>
+      
+    </section>
+  </component>
+
+        <component>
+    <section>
+      <templateId root="2.16.840.1.113883.10.20.1.8"/>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.19"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="Medications_2010-1"/>
+      <!-- Medications section template -->
+      <code code="10160-0" codeSystem="2.16.840.1.113883.6.1"/>
+      <title>Medication List</title>
+      <text>
+        <list>
+          <item>
+            <content ID="noMeds">No Active Medications</content>
+          </item>
+        </list>
+      </text>
+      
+      <entry typeCode="DRIV">
+        <substanceAdministration classCode="SBADM" moodCode="INT">
+          <templateId root="2.16.840.1.113883.10.20.1.24"/>
+          <templateId extension="medication" root="1.3.6.1.4.1.19376.1.5.3.1.4.7"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.1"/>
+          
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="Medications_SBADM_1"/>
+          <!-- The code is not required, but is used when expressing no Drug Therapies. -->
+          <code code="182849000" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="No Drug Therapy Prescribed"/>
+          <!-- When the code is used, there should be a Linkage to the narrative text supporting the assertion. -->
+          <text>
+            <reference value="#noMeds"/>
+          </text>
+          <!-- Fixed to "completed"-->
+          <statusCode code="completed"/>
+          <!-- The effective time low value should be the appropriate Null Flavor when expressing no Drug Therapies. -->
+          <effectiveTime xsi:type="IVL_TS">
+            <low nullFlavor="UNK"/>
+          </effectiveTime>
+          <!-- Should contain one routeCode -->
+          <!-- Should contain one doseQuantity -->
+          
+          <!-- The consumable epart is required, so must still be present. -->
+          <consumable typeCode="CSM">
+            <manufacturedProduct classCode="MANU">
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.7.2"/>
+              <templateId root="2.16.840.1.113883.10.20.1.53"/>
+              <!-- The manufacturedMaterial would be coded to the appropriate Null Flavor and the originalText should link to the narrative text supporting the assertion. -->
+              <manufacturedMaterial>
+                <!-- code should come from RxNorm 2.16.840.1.113883.6.88 -->
+                <!-- The code should be the appropriate Null Flavor when expressing no Drug Therapies. -->             
+                <code nullFlavor="UNK">
+                  <originalText>
+                    <reference value="#noMeds"/>
+                  </originalText>
+                </code>
+                <name/>
+              </manufacturedMaterial>
+            </manufacturedProduct>
+          </consumable>
+          <!-- In the case of a Flavor of Null for Medications, don't include a Medication Status Observation-->
+          <!-- OR  do as shown below and make the value "Active" -->
+          <entryRelationship typeCode="REFR">
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.57"/>
+              <templateId root="2.16.840.1.113883.10.20.1.47"/>
+              
+              <code code="33999-4" displayName="Status" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+              <statusCode code="completed"/>
+              <!-- Value set for statusCode of a medication status observations is from  -->
+              <!-- ValueSet: Active|No Longer Active|On Hold|Prior History -->
+              <value xsi:type="CD" code="55561003" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Active">
+                <originalText>
+                  <reference value="#noMeds"/>
+                </originalText>
+              </value>
+              
+            </observation>
+          </entryRelationship>
+        </substanceAdministration>
+      </entry>
+    </section>
+  </component>
+
+        <component>
+    <section>
+      <templateId root="2.16.840.1.113883.10.20.1.2"/> 
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.13"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="AllergiesAndOtherAdverseReactions_2010-1"/>
+      <code code="48765-2" displayName="ALLERGIES, ADVERSE REACTIONS, ALERTS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>Allergies and Adverse Reactions</title>
+    
+        <text> 
+          <content ID="ALG_1">No Known Allergies.</content> 
+        </text>
+      
+      <entry typeCode="COMP">
+        <act classCode="ACT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.27"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.3"/>
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="Alert_Concern_1"/>
+          <code nullFlavor="NA"/>
+          <statusCode code="active"/>
+          <effectiveTime> 
+            <low value="20111031"/>
+          </effectiveTime>
+          <entryRelationship typeCode="SUBJ" inversionInd="false">
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+              <templateId root="2.16.840.1.113883.10.20.1.28"/>
+              <templateId root="2.16.840.1.113883.10.20.1.18"/>
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.6"/>
+              <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="Alert_Observation_1"/>
+              <!--<code code="DALG" codeSystem="2.16.840.1.113883.5.4" codeSystemName="HL7 - ObservationIntoleranceType" displayName="Drug Allergy"/>-->
+              <code code="420134006" codeSystem="2.16.840.1.113883.6.96" displayName="Propensity to adverse reactions (disorder)" codeSystemName="SNOMED CT"/>
+              <text>
+                <reference value="#ALG_1"/>
+              </text>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20060330"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="160244002" codeSystem="2.16.840.1.113883.6.96" displayName="No Known Allergies">
+                <originalText>
+                  <reference value="#ALG_1"/>
+                </originalText>
+              </value>
+              
+            </observation>
+          </entryRelationship>         
+        </act>
+      </entry>
+    </section>    
+  </component>
+      </structuredBody>
+  </component>
+</ClinicalDocument>

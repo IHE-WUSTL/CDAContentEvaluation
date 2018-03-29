@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:n1="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:voc="urn:hl7-org:v3/voc" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+    
+    <realmCode code="US"/>
+    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+    <!-- These templates assert the level of conformance using HL7 History and Physical Header Specifications -->
+    <!-- CONF-HP-3 Level 1 asserts compliance with all general or non-level-specific constraints -->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.10"/>-->
+    <!-- CONF-HP-4 Level 2 asserts compliance with Level 1 requirements and asserts the presence of section codes-->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.20"/>-->
+    <!-- CONF-HP-5 Level 3 asserts compliance with Level 2 requirements and the use of CDA entries in some sections -->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.30"/>-->    
+    
+    <!-- Only include this template for a document that conforms to the US Realm -->
+    <templateId extension="HL7 General Header Constraints" root="2.16.840.1.113883.10.20.3"/>
+    <!-- PCC TF Vol2 6.3.1.1.3 -->
+    <templateId extension="Medical Document" root="1.3.6.1.4.1.19376.1.5.3.1.1.1"/>
+    <templateId extension="Immunization Content" root="1.3.6.1.4.1.19376.1.5.3.1.1.18.1.2"/>
+  
+    <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="IC_2010-1"/>
+
+    <code code="11369-6" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="History of Immunizations"/>
+
+    <title>IHE Connectathon Immunization Content - Trial Implementation</title>
+
+    <effectiveTime value="20100915100000-0600"/>
+
+    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+
+    <languageCode code="en-US"/>
+
+    <recordTarget>
+    <patientRole>
+      <id extension="80_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.2"/>
+      <addr>
+        <streetAddressLine>22 Franklin Street</streetAddressLine>
+        <city>Chicago</city>
+        <state>IL</state>
+        <postalCode>12345</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom nullFlavor="UNK" use="HP"/>
+      <patient>
+        <name use="L">
+          <given qualifier="CL">TJ</given>
+          <family>Lincoln</family>
+        </name>
+        <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+        <birthTime value="20080912060000-0600"/>
+        <raceCode code="101" codeSystem="2.16.840.1.113883.6.238" displayName="White"/>
+        <languageCommunication>
+          <languageCode nullFlavor="UNK"/>
+        </languageCommunication>
+      </patient>
+      <providerOrganization>
+        <id extension="73_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+        <name>Pediatric Care Services</name>
+        <telecom value="tel:+1-(222)123-8765" use="WP"/>
+        <addr>
+          <streetAddressLine>456 Willow Avenue</streetAddressLine>
+          <city>Chicago</city>
+          <state>IL</state>
+          <postalCode>12345</postalCode>
+          <country>US</country>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+
+    
+    <author>
+      <time value="20101013161200-0600"/>
+      <assignedAuthor>
+        <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="22_2010-1"/>
+        <code code="SELF" codeSystem="2.16.840.1.113883.5.111" displayName="Self" codeSystemName="HL7"/>
+        <addr nullFlavor="UNK"/>
+        <telecom nullFlavor="UNK" use="WP"/>
+        <assignedPerson>
+          <name>
+            <prefix>Dr.</prefix>
+            <given>Thomas</given>
+            <family>Jefferson</family>
+          </name>
+        </assignedPerson>
+      </assignedAuthor>
+    </author>
+    
+    <author>
+      <time value="20091223120000-0600"/>
+      <assignedAuthor>
+        <id extension="23_2010-1" root="1.3.6.1.4.1.21367.1.2.777.3"/>
+        <addr>
+          <streetAddressLine>3 Aaron Burr Way</streetAddressLine>
+          <city>Chicago</city>
+          <state>IL</state>
+          <postalCode>12345</postalCode>
+          <country>US</country>
+        </addr>
+        <telecom value="tel:+1-(555)777-1234" use="WP"/>
+        <assignedAuthoringDevice>
+          <softwareName>Care Ware v1</softwareName>
+        </assignedAuthoringDevice>
+        <representedOrganization>
+          <id extension="30_2010-1" root="1.3.6.1.4.1.21367.1.2.777.3"/>
+          <name>HIT Solutions</name>
+          <telecom value="tel:+1-(555) 888-1234" use="WP"/>
+          <addr>
+            <streetAddressLine>123 Oak Street</streetAddressLine>
+            <city>Oak Brook</city>
+            <state>IL</state>
+            <postalCode>60523</postalCode>
+            <country>US</country>
+          </addr>
+        </representedOrganization>
+      </assignedAuthor>
+    </author>
+  
+
+    <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="26_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+        <name>Greater Chicago HIE</name>
+        <telecom value="tel:+1-(555)777-1234" use="WP"/>
+        <addr>
+          <streetAddressLine>790 Jorie Blvd</streetAddressLine>
+          <city>Oak Brook</city>
+          <state>IL</state>
+          <postalCode>60523</postalCode>
+          <country>US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+
+    <authenticator>
+    <time value="20101013104100-0600"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id extension="38_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+      <addr nullFlavor="UNK"/>
+      <telecom nullFlavor="UNK" use="WP"/>
+      <assignedPerson>
+        <name>
+          <prefix>Dr.</prefix>
+          <given>Thomas</given>
+          <family>Jefferson</family>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </authenticator>
+
+    
+
+    
+
+    <documentationOf>
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="20101012160000-0600"/>
+        <high value="20101012164500-0600"/>
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.3"/>
+        <templateId root="2.16.840.1.113883.3.88.11.32.4"/>
+        <functionCode code="PP" codeSystem="2.16.840.1.113883.12.443"/>
+        <time>
+          <low/>
+          <high/>
+        </time>
+        <assignedEntity>
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="32_2010-01"/>
+          <code code="260000000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="ProviderCodes" displayName="Mount Vernon Hospitalist"/>
+          <addr nullFlavor="UNK"/>
+          <telecom nullFlavor="UNK" use="WP"/>
+          <assignedPerson>
+            <name>
+              <prefix>Dr.</prefix>
+              <given>Adam</given>
+              <family>Smith</family>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+
+    <componentOf>
+    <encompassingEncounter>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="31_2010-1"/>
+      <effectiveTime>
+        <low value="201010110900-0600"/>
+        <high value="201010131000-0600"/>
+      </effectiveTime>
+    </encompassingEncounter>
+  </componentOf>
+
+    <component>
+      <structuredBody>
+        <component>
+    <section>
+      <templateId root="2.16.840.1.113883.10.20.1.6"/>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.23"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="Immunizations_2010-1"/>
+      <code code="11369-6" displayName="HISTORY OF IMMUNIZATIONS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>immunization</title>
+      <text>
+        
+        Vaccine: Rubella
+        Admin Site: left thigh
+        Date: 2010.10.12
+        Status: Normal
+        Adverse Reactions(s): None
+        Source of Information: Women and Infant Hospital
+        
+      </text>
+    </section>
+  </component>
+      </structuredBody>
+  </component>
+</ClinicalDocument>

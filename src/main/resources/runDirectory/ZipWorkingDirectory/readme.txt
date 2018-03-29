@@ -1,0 +1,1 @@
+This directory is used for temporary work files and directories.

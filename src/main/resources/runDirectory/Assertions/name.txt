@@ -1,0 +1,4 @@
+# Family and given name
+
+EQ	/ClinicalDocument/recordTarget/patientRole/patient/name/family	Record Target, Family Name
+EQ	/ClinicalDocument/recordTarget/patientRole/patient/name/given	Record Target, Given Name

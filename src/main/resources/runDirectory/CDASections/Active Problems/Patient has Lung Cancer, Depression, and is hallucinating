@@ -1,0 +1,166 @@
+<section>
+   <templateId root="2.16.840.1.113883.10.20.1.11"/>
+   <!-- Parent template is CCD Problems (3.5) -->
+   <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.6"/>
+   <!-- Template of Active Problems section-->
+   <id extension="ActiveProblems_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+   <code code="11450-4" codeSystem="2.16.840.1.113883.6.1"
+      codeSystemName="LOINC" displayName="Problem List"/>
+   <title>Active Problems</title>
+   <!-- must have the word "Problems" in the title - from CCD Problems parent.-->
+   <text>
+      <content ID="Problem_1">Patient has Lung Cancer. </content>
+      <content ID="Problem_2">Patient has Depression. </content>
+      <content ID="Problem_3">Patient is hallucinating. </content>
+   </text>
+   <entry typeCode="COMP">
+      <act classCode="ACT" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.10.20.1.27"/>
+         <!-- The Parent of Concern Entry is CCD Problem Act -->
+         <!-- The subject of a Problem Act can be a Problem observation, Alert observation or some other clinical statement.-->
+         <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+         <!-- The Parent is a Concern entry -->
+         <!-- The subject of Concern is a Problem observation or Alergy observation -->
+         <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/>
+         <!-- is a Problem Concern entry -->
+         <!-- A specialiation of the Concern entry where the subject of the Concern is a Problem. -->
+         <!-- Includes one or more Problem entry -->
+         <id extension="ActiveProblems_C1" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+         <!-- required by Concern entry-->
+         <code nullFlavor="NA"/>
+         <!-- specified by Concern entry -->
+         <statusCode code="active"/>
+         <!-- Code established by Concern entry. The status of the concern can be: active|suspended|aborted|completed-->
+         <effectiveTime>
+            <!-- Established by Problem Act, further defined by Concern entry - indicates the timing interval of the Concern -->
+            <low value="20111018"/>
+         </effectiveTime>
+         <!-- A Problem Concern has one or more Problem entries.-->
+         <entryRelationship inversionInd="false" typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+               <!-- negationInd can be used to negate an observation when a pre-coordinated vocabulary is not available.-->
+               <templateId root="2.16.840.1.113883.10.20.1.28"/>
+               <!-- the Parent is a CCD Problem Observation -->
+               <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+               <!-- is a Problem entry -->
+               <!-- Problem entry makes use of Linking, Severity, Clinical Statement and Comment specification -->
+               <id extension="ActiveProblems_C1P1" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+               <!-- required by Problem entry -->
+               <!-- Lung Cancer -->
+               <code code="282291009"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="SNOMED CT" displayName="Diagnosis"/>
+               <!-- Code is constrained by Problem Obervation to be from value set 2.16.840.1.113883.1.11.20.14 -->
+               <!-- The code for a Problem entry can be any code from SNOMED. The recommended set is: Condition, Symptom, Finding, Complaint, Functional Limitation, Problem, Diagnosis.-->
+               <!-- Problem entry requires linkages to the text associated with the code. This reference points to the free text describing the problem in the document that is being described. -->
+               <text>
+                  <reference value="#problem_1"/>
+               </text>
+               <statusCode code="completed"/>
+               <!-- required to be "completed" by CCD Problem Observation -->
+               <effectiveTime>
+                  <!-- should contain one effectiveTime -->
+                  <!-- Medical Summaries use only low and high values. Low estimates the onset and High estimates the time at which the observation was nolonger true.-->
+                  <low value="20110315"/>
+               </effectiveTime>
+               <!-- Problem entry requires a value. The value can be coded or uncoded. It must come from a controlled vocabulary such as ICD-9, SNOMED CT, Medcin, etc.-->
+               <!-- The value includes a reference to the original text in order to link the coded value to the problem narrative text. -->
+               <value code="XXX.X"
+                  codeSystem="2.16.840.1.113883.6.103"
+                  codeSystemName="ICD-9CM (diagnoses)"
+                  displayName="Lung Cancer" xsi:type="CD">
+                  <originalText>
+                     <reference value="#problem_1"/>
+                  </originalText>
+               </value>
+               <!-- Optional entryRelationship (typeCode="SUBJ" inversionInd="true") element for Severity of the problem. Conforms to Severity entry 1.3.6.1.4.1.19376.1.5.3.1.4.1 -->
+               <!-- Optional entryRelationship (typeCode=REFR inversionInd="false") element for Clinical Status of the problem. Conforms to Problem Status Observation 1.3.6.1.4.1.19376.1.5.3.1.4.1.1 -->
+               <!-- Optional entryRelationship (typeCode=REFR inversionInd="false") element for Health Status of the patient. Conforms to Health Status Observation 1.3.6.1.4.1.19376.1.5.3.1.4.1.2 -->
+               <!-- Optional entryRelationship (typeCode=SUBJ inversionInd="true") element for Comments about the problem. Conforms to Comment entry 1.3.6.1.4.1.19376.1.5.3.1.4.2 -->
+               <!-- From CCD Problem Observations: an Age observation May appear here-->
+               <!-- CCD Problem Observation requires a Source Observation. We don't find examples of this in supplied samples. How does NIST Validation check this?-->
+            </observation>
+         </entryRelationship>
+      </act>
+   </entry>
+   <entry>
+      <act classCode="ACT" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.10.20.1.27"/>
+         <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+         <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/>
+         <id extension="ActiveProblems_C2" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+         <!-- required by Concern entry-->
+         <code nullFlavor="NA"/>
+         <statusCode code="active"/>
+         <effectiveTime>
+            <low value="20111017"/>
+         </effectiveTime>
+         <entryRelationship inversionInd="false" typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+               <templateId root="2.16.840.1.113883.10.20.1.28"/>
+               <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+               <id extension="ActiveProblems_C2P2" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+               <!-- required by Problem entry -->
+               <code code="282291009"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="SNOMED CT" displayName="Diagnosis"/>
+               <text>
+                  <reference value="#problem_2"/>
+               </text>
+               <statusCode code="completed"/>
+               <effectiveTime>
+                  <low value="20111017"/>
+               </effectiveTime>
+               <value code="XXX.X"
+                  codeSystem="2.16.840.1.113883.6.103"
+                  codeSystemName="ICD-9CM (diagnoses)"
+                  displayName="Depression" xsi:type="CD">
+                  <originalText>
+                     <reference value="#problem_2"/>
+                  </originalText>
+               </value>
+            </observation>
+         </entryRelationship>
+      </act>
+   </entry>
+   <entry>
+      <act classCode="ACT" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.10.20.1.27"/>
+         <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+         <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/>
+         <id extension="ActiveProblems_C2" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+         <!-- required by Concern entry-->
+         <code nullFlavor="NA"/>
+         <statusCode code="active"/>
+         <effectiveTime>
+            <low value="20111018"/>
+         </effectiveTime>
+         <entryRelationship inversionInd="false" typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+               <templateId root="2.16.840.1.113883.10.20.1.28"/>
+               <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+               <id extension="ActiveProblems_C2P2" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+               <!-- required by Problem entry -->
+               <code code="418799008"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="SNOMED CT" displayName="Symptom"/>
+               <text>
+                  <reference value="#problem_3"/>
+               </text>
+               <statusCode code="completed"/>
+               <effectiveTime>
+                  <low value="20111018"/>
+               </effectiveTime>
+               <value code="XXXXXXXX"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="SNOMED CT"
+                  displayName="Hallucinations" xsi:type="CD">
+                  <originalText>
+                     <reference value="#problem_3"/>
+                  </originalText>
+               </value>
+            </observation>
+         </entryRelationship>
+      </act>
+   </entry>
+</section>

@@ -1,0 +1,13 @@
+<section>
+   <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.22"/>
+   <id extension="HospitalDischargeMedications_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+   <code code="10183-2" codeSystem="2.16.840.1.113883.6.1"
+      codeSystemName="LOINC" displayName="HOSPITAL DISCHARGE MEDICATIONS"/>
+   <title>Hospital Discharge Medications</title>
+   <text> Discharge Medication List includes:  Cymbalta for depression. Lexapro is to be stopped. Patient may resume taking other medications as prescribed.</text>
+   <!-- Removing Entries for now
+     <entry>
+     <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/>
+     </entry>
+   -->
+</section>

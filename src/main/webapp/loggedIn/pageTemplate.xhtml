@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="../resources/css/erl.css" rel="stylesheet" type="text/css" />
+	<link href="../resources/css/default.css" rel="stylesheet"
+		type="text/css" />
+	<link href="../resources/css/cssLayout.css" rel="stylesheet"
+		type="text/css" />
+	<link href="../resources/css/xp/xp.css" rel="stylesheet"
+		type="text/css" />
+	<title>#{applicationBean.applicationName}</title>
+</h:head>
+
+<h:body>
+
+	<f:event listener="#{sessionBean.validateCAS}" type="preRenderView" />
+
+	<div id="top">
+		<ice:form>
+			<ice:panelGrid columns="3" columnClasses="erlC1 erlC2 erlC3"
+				styleClass="erlBanner" width="100%" height="120px">
+				<img src="../resources/imgs/IHE_logo.jpg" width="364" height="100"
+					alt="IHE_logo" />
+				<ice:panelGrid columns="1" styleClass="erlLeft">
+					<ice:outputText value="#{applicationBean.displayName}"
+						style="float: left; color: white; font-size:30px;font-weight:bolder;padding:10px" />
+
+					<ice:panelGroup>
+						<!-- logged in -->
+						<ice:panelGrid columns="2">
+							<ice:outputText
+								style="color: white; font-size:14px;font-weight:bold;padding:20px">
+                  Logged in as: #{sessionBean.role} #{sessionBean.casUserName}
+               </ice:outputText>
+							<ice:commandButton id="lo" value="Log Out"
+								action="#{applicationBean.casLogoff}" />
+						</ice:panelGrid>
+					</ice:panelGroup>
+				</ice:panelGrid>
+				<h:outputLink id="wiki" rendered="#{applicationBean.wiki}"
+					value="#{applicationBean.wikiURL}" target="_blank" class="erlRight">
+					<img src="../resources/imgs/wiki.jpeg" width="60" />
+				</h:outputLink>
+			</ice:panelGrid>
+		</ice:form>
+	</div>
+
+	<div class="left_content">
+		<ice:form>
+			<h:messages globalOnly="true" style="color:red" />
+
+			<f:subview id="top">
+				<ui:insert name="content">Content</ui:insert>
+			</f:subview>
+		</ice:form>
+	</div>
+
+</h:body>
+
+</html>

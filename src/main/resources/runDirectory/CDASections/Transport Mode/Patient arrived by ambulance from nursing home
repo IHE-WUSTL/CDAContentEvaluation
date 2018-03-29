@@ -1,0 +1,26 @@
+<section>
+   <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.10.3.2"/>
+   <id extension="TransportMode_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+   <code code="11459-5" codeSystem="2.16.840.1.113883.6.1"
+      codeSystemName="LOINC" displayName="TRANSPORT MODE"/>
+   <title>Transport Mode</title>
+   <text>Patient arrived by ambulance from nursing home</text>
+   <!-- Remove entries for now
+  <entry>
+    <act classCode="ACT" moodCode="EVN">
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.1.10.4.1"/>
+      <id root="" extension=""/>
+      
+      <originalText><reference value="50"/>Walk-in following transport via private
+        transportation</originalText>
+      
+      <text>
+        <reference value="Walk-in following transport via private transportation"/>
+      </text>
+      <effectiveTime>
+        <high value="20090223130000-0600"/>
+      </effectiveTime>
+    </act>
+  </entry>
+  -->
+</section>

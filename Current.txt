@@ -1,0 +1,2 @@
+Trying to see if I can come up with a FileResource which calls a routine when it 
+finishes sending the file.

@@ -1,0 +1,6 @@
+EQ	/ClinicalDocument/recordTarget/patientRole/patient/name/family	Record Target, Family Name
+EQ	/ClinicalDocument/recordTarget/patientRole/patient/name/given	Record Target, Given Name
+EQ	/ClinicalDocument/component/structuredBody/component/section/templateId[@root = '1.3.6.1.4.1.19376.1.5.3.1.3.6']/../id/@root	Identifier
+PRESENT	/ClinicalDocument/component/structuredBody/component/section/templateId[@root = '1.3.6.1.4.1.19376.1.5.3.1.3.6']/../id/@root	Identifier
+SIMILAR	/ClinicalDocument/component/structuredBody/component/section/templateId[@root = '1.3.6.1.4.1.19376.1.5.3.1.3.6']/../id/@root	Identifier
+FOO	/ClinicalDocument/component/structuredBody/component/section/templateId[@root = '1.3.6.1.4.1.19376.1.5.3.1.3.6']/../id/@root	Identifier

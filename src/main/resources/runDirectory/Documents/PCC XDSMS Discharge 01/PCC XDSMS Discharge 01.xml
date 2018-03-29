@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<ClinicalDocument xmlns="urn:hl7-org:v3" xmlns:n1="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:voc="urn:hl7-org:v3/voc" xsi:schemaLocation="urn:hl7-org:v3 CDA.xsd">
+    
+    <realmCode code="US"/>
+    <typeId extension="POCD_HD000040" root="2.16.840.1.113883.1.3"/>
+    
+    <!-- These templates assert the level of conformance using HL7 History and Physical Header Specifications -->
+    <!-- CONF-HP-3 Level 1 asserts compliance with all general or non-level-specific constraints -->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.10"/>-->
+    <!-- CONF-HP-4 Level 2 asserts compliance with Level 1 requirements and asserts the presence of section codes-->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.20"/>-->
+    <!-- CONF-HP-5 Level 3 asserts compliance with Level 2 requirements and the use of CDA entries in some sections -->
+    <!-- <templateId extension="IMPL_CDAR2_LEVEL1-2REF_US_I2_2005SEP" root="2.16.840.1.113883.10.20.30"/>-->    
+    
+    <!-- Only include this template for a document that conforms to the US Realm -->
+    <templateId extension="HL7 General Header Constraints" root="2.16.840.1.113883.10.20.3"/>
+    <!-- PCC TF Vol2 6.3.1.1.3 -->
+    <templateId extension="Medical Document" root="1.3.6.1.4.1.19376.1.5.3.1.1.1"/>
+    <!-- PCC TF Vol2 6.3.1.2 -->
+    <templateId extension="Medical Summary" root="1.3.6.1.4.1.19376.1.5.3.1.1.2"/>
+    <templateId extension="Discharge Summary" root="1.3.6.1.4.1.19376.1.5.3.1.1.4"/>
+  
+    <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="MSDischarge_2010-1"/>
+
+    <code code="18842-5" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Discharge Summarization Note"/>
+
+    <title>IHE Connectathon XDSMS Discharge</title>
+
+    <effectiveTime value="20111020140000-0600"/>
+
+    <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25"/>
+
+    <languageCode code="en-US"/>
+
+    <recordTarget>
+    <patientRole>
+      <id extension="20_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.2"/>
+      <addr>
+        <streetAddressLine>2 John Adams Street</streetAddressLine>
+        <city>Chicago</city>
+        <state>IL</state>
+        <postalCode>12345</postalCode>
+        <country>US</country>
+      </addr>
+      <telecom nullFlavor="UNK" use="HP"/>
+      <patient>
+        <name use="L">
+          <given qualifier="CL">George</given>
+          <family>Washington</family>
+        </name>
+        <administrativeGenderCode code="M" codeSystem="2.16.840.1.113883.5.1"/>
+        <birthTime value="19271127"/>
+        <raceCode code="101" codeSystem="2.16.840.1.113883.6.238" displayName="White"/>
+        <languageCommunication>
+          <languageCode nullFlavor="UNK"/>
+        </languageCommunication>
+      </patient>
+      <providerOrganization>
+        <id extension="21_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+        <name>Mount Vernon Hospital</name>
+        <telecom value="tel:+1-(345)999-8765" use="WP"/>
+        <addr>
+          <streetAddressLine>456 Estate Street</streetAddressLine>
+          <city>Chicago</city>
+          <state>IL</state>
+          <postalCode>12345</postalCode>
+          <country>US</country>
+        </addr>
+      </providerOrganization>
+    </patientRole>
+  </recordTarget>
+
+    
+    <author>
+      <time value="20101013161200-0600"/>
+      <assignedAuthor>
+        <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="22_2010-1"/>
+        <code code="SELF" codeSystem="2.16.840.1.113883.5.111" displayName="Self" codeSystemName="HL7"/>
+        <addr nullFlavor="UNK"/>
+        <telecom nullFlavor="UNK" use="WP"/>
+        <assignedPerson>
+          <name>
+            <prefix>Dr.</prefix>
+            <given>Thomas</given>
+            <family>Jefferson</family>
+          </name>
+        </assignedPerson>
+      </assignedAuthor>
+    </author>
+    
+    <author>
+      <time value="20091223120000-0600"/>
+      <assignedAuthor>
+        <id extension="23_2010-1" root="1.3.6.1.4.1.21367.1.2.777.3"/>
+        <addr>
+          <streetAddressLine>3 Aaron Burr Way</streetAddressLine>
+          <city>Chicago</city>
+          <state>IL</state>
+          <postalCode>12345</postalCode>
+          <country>US</country>
+        </addr>
+        <telecom value="tel:+1-(555)777-1234" use="WP"/>
+        <assignedAuthoringDevice>
+          <softwareName>Care Ware v1</softwareName>
+        </assignedAuthoringDevice>
+        <representedOrganization>
+          <id extension="30_2010-1" root="1.3.6.1.4.1.21367.1.2.777.3"/>
+          <name>HIT Solutions</name>
+          <telecom value="tel:+1-(555) 888-1234" use="WP"/>
+          <addr>
+            <streetAddressLine>123 Oak Street</streetAddressLine>
+            <city>Oak Brook</city>
+            <state>IL</state>
+            <postalCode>60523</postalCode>
+            <country>US</country>
+          </addr>
+        </representedOrganization>
+      </assignedAuthor>
+    </author>
+  
+
+    <custodian>
+    <assignedCustodian>
+      <representedCustodianOrganization>
+        <id extension="26_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+        <name>Greater Chicago HIE</name>
+        <telecom value="tel:+1-(555)777-1234" use="WP"/>
+        <addr>
+          <streetAddressLine>790 Jorie Blvd</streetAddressLine>
+          <city>Oak Brook</city>
+          <state>IL</state>
+          <postalCode>60523</postalCode>
+          <country>US</country>
+        </addr>
+      </representedCustodianOrganization>
+    </assignedCustodian>
+  </custodian>
+
+    <authenticator>
+    <time value="20101013104100-0600"/>
+    <signatureCode code="S"/>
+    <assignedEntity>
+      <id extension="38_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+      <addr nullFlavor="UNK"/>
+      <telecom nullFlavor="UNK" use="WP"/>
+      <assignedPerson>
+        <name>
+          <prefix>Dr.</prefix>
+          <given>Thomas</given>
+          <family>Jefferson</family>
+        </name>
+      </assignedPerson>
+    </assignedEntity>
+  </authenticator>
+
+    
+
+    
+
+    <documentationOf>
+    <serviceEvent classCode="PCPR">
+      <effectiveTime>
+        <low value="20101012160000-0600"/>
+        <high value="20101012164500-0600"/>
+      </effectiveTime>
+      <performer typeCode="PRF">
+        <templateId root="1.3.6.1.4.1.19376.1.5.3.1.2.3"/>
+        <templateId root="2.16.840.1.113883.3.88.11.32.4"/>
+        <functionCode code="PP" codeSystem="2.16.840.1.113883.12.443"/>
+        <time>
+          <low/>
+          <high/>
+        </time>
+        <assignedEntity>
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="32_2010-01"/>
+          <code code="260000000X" codeSystem="2.16.840.1.113883.6.101" codeSystemName="ProviderCodes" displayName="Mount Vernon Hospitalist"/>
+          <addr nullFlavor="UNK"/>
+          <telecom nullFlavor="UNK" use="WP"/>
+          <assignedPerson>
+            <name>
+              <prefix>Dr.</prefix>
+              <given>Adam</given>
+              <family>Smith</family>
+            </name>
+          </assignedPerson>
+        </assignedEntity>
+      </performer>
+    </serviceEvent>
+  </documentationOf>
+
+    <componentOf>
+    <encompassingEncounter>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="31_2010-1"/>
+      <effectiveTime>
+        <low value="201010110900-0600"/>
+        <high value="201010131000-0600"/>
+      </effectiveTime>
+    </encompassingEncounter>
+  </componentOf>
+
+    <component>
+      <structuredBody>
+        <component>
+    <section>
+      <templateId root="2.16.840.1.113883.10.20.1.11"/> <!-- Parent template is CCD Problems (3.5) -->
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.6"/> <!-- Template of Active Problems section-->
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ActiveProblems_2010-1"/>
+      <code code="11450-4" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC" displayName="Problem List"/>
+      <title>Active Problems</title> <!-- must have the word "Problems" in the title - from CCD Problems parent.--> 
+      <text> 
+        <content ID="Problem_1">Patient has Lung Cancer. </content>
+        <content ID="Problem_2">Patient has Depression. </content>
+      </text>
+      
+      <entry typeCode="COMP"> 
+        <act classCode="ACT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.27"/> <!-- The Parent of Concern Entry is CCD Problem Act -->
+          <!-- The subject of a Problem Act can be a Problem observation, Alert observation or some other clinical statement.-->
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/> <!-- The Parent is a Concern entry -->
+          <!-- The subject of Concern is a Problem observation or Alergy observation -->
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/> <!-- is a Problem Concern entry -->
+          <!-- A specialiation of the Concern entry where the subject of the Concern is a Problem. -->
+          <!-- Includes one or more Problem entry -->
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ActiveProblems_C1"/> <!-- required by Concern entry-->
+          <code nullFlavor="NA"/> <!-- specified by Concern entry -->
+          <statusCode code="active"/> <!-- Code established by Concern entry. The status of the concern can be: active|suspended|aborted|completed-->
+          <effectiveTime> <!-- Established by Problem Act, further defined by Concern entry - indicates the timing interval of the Concern -->
+            <low value="20110315"/>
+          </effectiveTime>
+          <!-- A Problem Concern has one or more Problem entries.-->
+          <entryRelationship typeCode="SUBJ" inversionInd="false">
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+              <!-- negationInd can be used to negate an observation when a pre-coordinated vocabulary is not available.-->
+              <templateId root="2.16.840.1.113883.10.20.1.28"/> <!-- the Parent is a CCD Problem Observation -->
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/> <!-- is a Problem entry -->
+              <!-- Problem entry makes use of Linking, Severity, Clinical Statement and Comment specification -->
+              <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ActiveProblems_C1P1"/> <!-- required by Problem entry -->
+              <!-- Lung Cancer -->
+              <code code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Diagnosis"/> 
+              <!-- Code is constrained by Problem Obervation to be from value set 2.16.840.1.113883.1.11.20.14 -->
+              <!-- The code for a Problem entry can be any code from SNOMED. The recommended set is: Condition, Symptom, Finding, Complaint, Functional Limitation, Problem, Diagnosis.-->
+              <!-- Problem entry requires linkages to the text associated with the code. This reference points to the free text describing the problem in the document that is being described. -->
+              <text>
+                <reference value="#problem_1"/>
+              </text>
+              <statusCode code="completed"/> <!-- required to be "completed" by CCD Problem Observation -->
+              <effectiveTime> <!-- should contain one effectiveTime --> <!-- Medical Summaries use only low and high values. Low estimates the onset and High estimates the time at which the observation was nolonger true.--> 
+                <low value="20110315"/>
+              </effectiveTime>
+              <!-- Problem entry requires a value. The value can be coded or uncoded. It must come from a controlled vocabulary such as ICD-9, SNOMED CT, Medcin, etc.-->
+              <!-- The value includes a reference to the original text in order to link the coded value to the problem narrative text. --> 
+              <value xsi:type="CD" code="XXX.X" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM (diagnoses)" displayName="Lung Cancer">
+                <originalText>
+                  <reference value="#problem_1"/>
+                </originalText>
+              </value>
+              <!-- Optional entryRelationship (typeCode="SUBJ" inversionInd="true") element for Severity of the problem. Conforms to Severity entry 1.3.6.1.4.1.19376.1.5.3.1.4.1 -->
+              <!-- Optional entryRelationship (typeCode=REFR inversionInd="false") element for Clinical Status of the problem. Conforms to Problem Status Observation 1.3.6.1.4.1.19376.1.5.3.1.4.1.1 -->
+              <!-- Optional entryRelationship (typeCode=REFR inversionInd="false") element for Health Status of the patient. Conforms to Health Status Observation 1.3.6.1.4.1.19376.1.5.3.1.4.1.2 -->
+              <!-- Optional entryRelationship (typeCode=SUBJ inversionInd="true") element for Comments about the problem. Conforms to Comment entry 1.3.6.1.4.1.19376.1.5.3.1.4.2 -->
+              <!-- From CCD Problem Observations: an Age observation May appear here-->
+              <!-- CCD Problem Observation requires a Source Observation. We don't find examples of this in supplied samples. How does NIST Validation check this?-->
+            </observation>
+          </entryRelationship>
+          
+        </act>
+      </entry>
+      <entry>
+        <act classCode="ACT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.27"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/>
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ActiveProblems_C2"/> <!-- required by Concern entry-->
+          <code nullFlavor="NA"/>
+          <statusCode code="active"/>
+          <effectiveTime>
+            <low value="20111017"/>
+          </effectiveTime>
+          <entryRelationship typeCode="SUBJ" inversionInd="false">
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+              <templateId root="2.16.840.1.113883.10.20.1.28"/>
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+              <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="ActiveProblems_C2P2"/> <!-- required by Problem entry -->
+              <code code="282291009" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Diagnosis"/>
+              <text>
+                <reference value="#problem_2"/>
+              </text>
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20111017"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="XXX.X" codeSystem="2.16.840.1.113883.6.103" codeSystemName="ICD-9CM (diagnoses)" displayName="Depression">
+                <originalText>
+                  <reference value="#problem_2"/>
+                </originalText>
+              </value>
+            </observation>
+          </entryRelationship>
+        </act>
+      </entry>
+     
+    </section>
+  </component>
+        <component>
+    <section>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.8"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="HistoryOfPastIllness_2010-1"/>
+      <code code="11348-0" displayName="HISTORY OF PAST ILLNESS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>History of Past Illness</title>
+      <text> Patient was diagnosed with Depression.  
+        Patient was diagnosed with Lung Cancer.</text>
+      <!-- This section has required entries
+        <entry>
+        
+        </entry>
+      -->
+      
+    </section>
+  </component>
+        <component>
+    <section>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.7"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="DischargeDiagnosis_2010-1"/>
+      <code code="11535-2" displayName="HOSPITAL DISCHARGE DX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>Discharge Diagnosis</title>
+      <text> Adverse Reaction to Medication.</text>
+      
+      <!-- remove entries for now
+        <entry>
+        <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/> Moore: Start with ACT as the example
+        shows in 1.3.6.1.4.1.19376.1.5.3.1.4.5.2? </entry>
+      -->
+      
+    </section>
+  </component>
+        <component>
+    <section>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.3"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="HospitalAdmissionDiagnosis_2010-1"/>
+      <code code="46241-6" displayName="HOSPITAL ADMISSION DX" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>Hospital Admission Diagnosis</title>
+      <text>
+        Patient was admitted for observation after suspecting an adverse reaction to recently prescribed antidepressant (Lexapro). 
+      </text>
+      <!-- This section has required entries
+        <entry>
+        
+        </entry>
+      -->
+      
+    </section>
+  </component>
+        <component>
+    <section>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.22"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="HospitalDischargeMedications_2010-1"/>
+      <code code="10183-2" displayName="HOSPITAL DISCHARGE MEDICATIONS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>Hospital Discharge Medications</title>
+      <text> Discharge Medication List includes:  Cymbalta for depression. Lexapro is to be stopped. Patient may resume taking other medications as prescribed.</text>
+      
+      <!-- Removing Entries for now
+        <entry>
+        <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.2"/>
+        </entry>
+      -->
+      
+    </section>
+  </component>
+        <component>
+    <section>
+      <templateId root="2.16.840.1.113883.10.20.1.2"/>
+      
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.13"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="AllergiesAndOtherAdverseReactions_2010-1"/>
+      <code code="48765-2" displayName="ALLERGIES, ADVERSE REACTIONS, ALERTS" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>Allergies and Adverse Reactions</title>
+      <text> 
+        <content ID="ALG_Status_1">Active</content> <content ID="ALG_Type_1">Drug Allergy</content>: 
+        The patient has an adverse reaction to <content ID="ALG_Substance_1">LEXAPRO</content>(Escitalopram) 
+        which involved <content ID="ALG_Reaction_1">Hallucinations</content>.
+        The problem began on October 18, 2011.
+      </text>
+      
+      <entry typeCode="COMP">
+        <act classCode="ACT" moodCode="EVN">
+          <templateId root="2.16.840.1.113883.10.20.1.27"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+          <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.3"/>
+          <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="Alert_Concern_1"/>
+          <code nullFlavor="NA"/>
+          <statusCode code="active"/>
+          <effectiveTime> 
+            <low value="20111018"/>
+          </effectiveTime>
+          <entryRelationship typeCode="SUBJ" inversionInd="false">
+            <observation classCode="OBS" moodCode="EVN">
+              <templateId root="2.16.840.1.113883.10.20.1.28"/>
+              <templateId root="2.16.840.1.113883.10.20.1.18"/>
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+              <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.6"/>
+              <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="Alert_Observation_1"/>
+              <code code="DALG" codeSystem="2.16.840.1.113883.5.4" codeSystemName="HL7 - ObservationIntoleranceType" displayName="Drug allergy"/>
+              <text>
+                <reference value="#ALG_Type_1"/>
+              </text>
+              
+              <statusCode code="completed"/>
+              <effectiveTime>
+                <low value="20111018"/>
+              </effectiveTime>
+              <value xsi:type="CD" code="282100009" codeSystem="2.16.840.1.113883.6.96" displayName="Adverse reaction to substance">
+                <originalText>
+                  <reference value="#ALG_Type_1"/>
+                </originalText>
+              </value>
+              <participant typeCode="CSM">
+                <participantRole classCode="MANU">
+                  <playingEntity classCode="MMAT">
+                    <code code="352272" codeSystem="2.16.840.1.113883.6.88" codeSystemName="RxNorm" displayName="LEXAPRO (Oral-pill)">
+                      <originalText>
+                        <reference value="ALG_Substance_1"/>
+                      </originalText>
+                    </code>
+                  </playingEntity>
+                </participantRole>
+              </participant>
+              <entryRelationship typeCode="MFST" inversionInd="true">
+                <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.6.1"/>
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.28"/>
+                  <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+                  <templateId root="2.16.840.1.113883.10.20.1.54"/>
+                  <id root="1.3.6.1.4.1.21367.2010.1.2.777.3" extension="Alert_Observation_MFST_1"/>
+                  <code code="55607006" codeSystem="2.16.840.1.113883.6.96" codeSystemName="SNOMED CT" displayName="Problem"/>
+                  <text>
+                    <reference value="#ALG_Type_1"/>
+                  </text>
+                  <statusCode code="completed"/>
+                  <effectiveTime>
+                    <low value="20111018"/>
+                  </effectiveTime>
+                  <value xsi:type="CD" code="XXXXXXX" codeSystem="2.16.840.1.113883.6.96" displayName="Hallucinations">
+                    <originalText>
+                      <reference value="ALG_Reaction_1"/>
+                    </originalText>
+                  </value>
+                </observation>
+              </entryRelationship>
+              <entryRelationship typeCode="REFR">
+                <observation classCode="OBS" moodCode="EVN">
+                  <templateId root="2.16.840.1.113883.10.20.1.57"/>
+                  <templateId root="2.16.840.1.113883.10.20.1.39"/>
+                  <code code="33999-4" codeSystem="2.16.840.1.113883.6.1" displayName="Status"/>
+                  <statusCode code="completed"/>
+                  <value xsi:type="CE" code="55561003" codeSystem="2.16.840.1.113883.1.11.20.3" displayName="Active">
+                    <originalText>
+                      <reference value="ALG_Status_1"/>
+                    </originalText>
+                  </value>
+                </observation>
+              </entryRelationship>          
+            </observation>
+          </entryRelationship>
+        </act>
+        
+      </entry>
+    </section>    
+  </component>
+        <component>
+    <section>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.5"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="HospitalCourse_2010-1"/>
+      <code code="8648-8" displayName="HOSPITAL COURSE" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>Hospital Course</title>
+      <text> The Patient's medications were changed. Cymbalta was given in place of Lexapro. The Patient was monitored for 48 hours.
+      </text>
+    </section>
+  </component>
+        <component>
+    <section>
+      <templateId root="2.16.840.1.113883.10.20.1.10"/>
+      <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.31"/>
+      <id root="1.3.6.1.4.1.21367.2010.1.2.777" extension="CarePlan_2010-1"/>
+      <code code="18776-5" displayName="TREATMENT PLAN" codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+      <title>CARE PLAN</title>
+      <text> Continue to watch for signs of mental status change over the next 3-5 days. Report any change in status to your primary care physician.
+      </text>
+      <!-- This section has required entries
+        <entry>
+        
+        </entry>
+      -->
+      
+    </section>
+  </component>
+      </structuredBody>
+  </component>
+</ClinicalDocument>

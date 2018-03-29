@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+                   
+<!-- ***********************************************************************
+		  Standard environment variables used in ERL web applications. Processed
+		  in Util.initializeApplication. Entries are required only if the default
+		  values are not appropriate:  
+		  
+		  profile: run profile for the application, for example, DEV, PRODUCTION.
+		  defaults to empty String.
+		  
+		  applicationContext: defaults to name passed to 
+		  Util.initializeApplication with - and profile appended, for example:
+		  applicationName-dev.
+		  
+		  runDirectory: name of a directory in the context which contains data
+		  needed to control the operation of the web application, including the
+		  .ini properties file, the log4j properties file and other resources.
+		  Defaults to "runDirectory".
+		  ***********************************************************************
+	-->
+
+	<env-entry>
+		<env-entry-name>profile</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>na</env-entry-value>
+	</env-entry>            
+                   
+   <context-param>
+      <param-name>javax.faces.PROJECT_STAGE</param-name>
+      <param-value>Development</param-value>
+   </context-param>
+   <context-param>
+      <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+      <param-value>true</param-value>
+   </context-param>
+   <context-param>
+      <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+      <param-value>server</param-value>
+   </context-param>
+   <context-param>
+      <param-name>com.icesoft.faces.uploadDirectory</param-name>
+      <param-value>upload</param-value>
+   </context-param>
+	
+	<!-- CAS Client  
+		see https://wiki.jasig.org/display/CASC/Configuring+the+Jasig+CAS+Client+for+Java+in+the+web.xml -->
+	
+   <filter>
+      <filter-name>CAS Authentication Filter</filter-name>
+      <filter-class>edu.wustl.mir.erl.IHETools.Util.AuthFilter</filter-class>
+      <init-param>
+         <param-name>casServerLoginUrl</param-name>
+         <param-value>http://ihe.wustl.edu/cas</param-value>
+      </init-param>
+      <init-param>
+         <param-name>service</param-name>
+         <param-value>http://gazelle-gold.wustl.edu/CDAContentEvaluation-na/loggedIn/CDAContentEvaluation.xhtml</param-value>
+      </init-param>
+   </filter>
+   
+   <filter>
+      <filter-name>CAS Validation Filter</filter-name>
+      <filter-class>edu.wustl.mir.erl.IHETools.Util.ValFilter</filter-class>
+      <init-param>
+         <param-name>casServerUrlPrefix</param-name>
+         <param-value>http://ihe.wustl.edu/cas</param-value>
+      </init-param>
+      <init-param>
+         <param-name>service</param-name>
+         <param-value>http://gazelle-gold.wustl.edu/CDAContentEvaluation-na/loggedIn/CDAContentEvaluation.xhtml</param-value>
+      </init-param>
+   </filter>
+   
+   <filter>
+      <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+      <filter-class>org.jasig.cas.client.util.HttpServletRequestWrapperFilter</filter-class>
+   </filter>
+   
+   <filter-mapping>
+      <filter-name>CAS Authentication Filter</filter-name>
+      <url-pattern>/loggedIn/*</url-pattern>
+   </filter-mapping>
+   
+   <filter-mapping>
+      <filter-name>CAS Validation Filter</filter-name>
+      <url-pattern>/loggedIn/*</url-pattern>
+   </filter-mapping>
+   
+   <filter-mapping>
+      <filter-name>CAS HttpServletRequest Wrapper Filter</filter-name>
+      <url-pattern>/loggedIn/*</url-pattern>
+   </filter-mapping>
+   
+   <!--  End of CAS -->
+	
+	<!-- JSF mapping -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet>
+		<servlet-name>Resource Servlet</servlet-name>
+		<servlet-class>com.icesoft.faces.webapp.CompatResourceServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Map these files with JSF -->
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Resource Servlet</servlet-name>
+		<url-pattern>/xmlhttp/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/icefaces/*</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	
+	<welcome-file-list>
+		<welcome-file>CDAContentEvaluation.xhtml</welcome-file>
+	</welcome-file-list>
+
+
+</web-app>

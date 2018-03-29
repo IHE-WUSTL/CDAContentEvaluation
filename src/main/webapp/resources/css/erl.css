@@ -1,0 +1,96 @@
+/* 
+    Document   : erlcss
+    Created on : Sep 2, 2011, 10:25:08 AM
+    Author     : rmoult01
+    Description: formatting for all ERL projects
+*/
+
+.erlDatTblHdr {
+   padding: 1px;
+   border: 1px solid;
+   background-color: red;
+   height: 15px;
+}
+
+.erlDatColHdr {
+   padding: 1px;
+   border: 1px solid;
+   background-color: red;
+   height: 15px;
+}
+
+.erlPnlGrd {
+   border: 1px solid;
+   padding: 2px;
+   background-color: #f2e4cc;
+   margin: 1px;
+   width: 100%;
+}
+
+.erlPnlGrdInfo {
+   border: 1px solid;
+   background-color: #b8b5b6;
+   width: 100%;
+
+}
+
+.erlPnlGrdErr {
+   border: 1px solid;
+   padding: 2px;
+   background-color: #f5c4c8;
+   margin: 1px;
+   width: 100%;
+
+}
+
+.erlPnlGrp {
+   border: solid 1px;
+   margin: 1px;
+   padding: 2px;
+   background-color: #cac8c8;
+}
+
+.erlCellOk {
+   display: table-cell;
+}
+
+.erlCellErr {
+   display: table-cell;
+   background-color: #f46706;
+}
+
+.erlPnlGrdAction {
+   padding-left: 25px;
+   width: 300px;
+}
+
+.erlDef {
+	
+}
+
+.erlYellow {
+	background-color: yellow;
+}
+
+
+.erlRight {
+   float: right;
+}
+
+.erlLeft {
+	float: left;
+}
+
+.erlC1 {
+	width: 375px;
+}
+
+.erlC2 {
+}
+
+.erlC3 {
+}
+
+.erlBanner {
+	height: 100px;
+}

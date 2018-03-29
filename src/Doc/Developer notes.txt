@@ -1,0 +1,101 @@
+This is what I need added to the CDA evaluation software.
+
+Regular users do not need to login. I do want to add a login capability. If I 
+login (Gabriel's stuff) and am a monitor, I want the ability to store the 
+document with some annotation. Other users (without login) will be able to 
+search for stored documents. These are the "golden" documents that a human says 
+are ready for consumption by others.
+
+ In general, users will want a zip of everything. They will also want some 
+ limited search stuff.
+
+At a minimum, I would like you to store the documents locally so that folks can 
+get a zip file of them. A monitor will have to complete a form to submit the 
+image. You would want to keep a tab delimited file with the form data as part of 
+the zip so folks can refer/search.? So, lets assume barebones requirements.
+
+1. Folks who pull things back do not have a search interface from you. They get 
+a zip file that contains all documents and the tab delimited spreadsheet.
+2. The form that you fill out will have these
+2.1 Drop down for the organization
+2.2 Drop down for the system name
+2.3 Drop down for the document type
+2.3 Text area to enter a comment
+2.4 You compute the file name (organization + system + type + number [0, 1, 2, 
+...]) no spaces allowed
+
+Version 2 of the system
+You give them limited search. They get dropdowns 2.1, 2.2, 2.3 to narrow their 
+search. No ajax to make things work together. They just select any search 
+criteria (or none) and hit search. You give them the list of all documents that 
+match. They can download individual documents. Don't bother giving them the 
+ability to download the subset they selected. They can go back to barebones and 
+get the whole thing.
+
+Version 3 of the system
+We enhance the form they use. I don't know if we have discussed XDS before; I 
+imagine you have heard folks mumbling about it as part of the Connectathon. The 
+enhanced form has some other fields the user will select. When they submit, you 
+use that to create XDS metadata and submit the document to an XDS repository. 
+You will also have to generate a patient ID and hardcode some other things. 
+After you submit to the XDS repository, your job for XDS is done.
+I have an XDS repository and I have XDS client software. I need to package the 
+XDS client software to make it easier to use. Bill Majurski wrote his stuff 
+based on the model that it would be integrated into a larger test engine. That 
+infrastructure is hard to remove. Before I drop this on you, I want to 
+investigate another toolkit that is intended to help folks who are writing real 
+applications. Since you are not debugging an XDS repository, this might be 
+better for you.
+
+Version 4 of the system. I don't think we will get here by January.
+When you send to the XDS repository, you get to select from a list and pick more 
+than one destination. That means you will have to
+a. Send an HL7 V2 message that registers the patient with a registry
+b. Send that same V2 message to a PIX Manager and a PDQ supplier
+c. Send another V2 message that registers that patient to the PIX manager with a 
+different ID.
+d. Submit the document to the Repository
+Version 4 will require a lot more documentation from me.
+
+I would be happy if you could look at my handwaving for the barebones system and 
+tell me when that could be implemented (assuming RFD is just deferred). I would 
+be happy to go with that if you can have it in time for the Connectathon. I 
+would be especially thrilled if you told me you had a version that was ready for 
+me to review by December 14, but I don't know if that is possible. Take a look 
+at it and let me know if that is feasible. I need to do some planning, and would 
+like to know this week if you think you can hit:
+- Dec 14
+- First week in Jan
+- Jan 15 (or the next Monday if that is a weekend)
+- Nope, not possible by Jan 27
+
+I'm sorry.
+
+"The documents": Just the ones that they submitted. Hmm, does the current page 
+have a way to get a zip of all of the gold standard documents? If not, I would 
+like to add that feature.
+
+"The image": I still think I live in Radiology. I meant the CDA document that 
+was uploaded. We are not storing any test results.
+
+End game: Monitors review CDA documents and declare "By the power vested in me 
+by the state of Illinois, I declare that this CDA document has passed my 
+scrutiny. I hereby place it in this special library that is reserved only for 
+such CDA documents."
+
+Our participants can then pull the documents from this small library and know 
+that someone has performed some level of scrutiny/curation/whatever term you 
+think is appropriate.
+
+That is the reason that only monitors with a login can submit a document.
+
+steve
+
+
+Ralph, this is the list. You care only about the first two columns to list 
+organization and system. You can keep the rest in your back pocket in case you 
+get questions.
+
+
+steve
+

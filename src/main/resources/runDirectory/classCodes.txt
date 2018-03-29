@@ -1,0 +1,20 @@
+# formatCodes.txt                                        				Steve Moore
+# A listing of XDS formatCodes that are valid for documents.
+# Leading and trailing white space will be trimmed.
+# Any line whose first non white space character is "#" will be ignored as a comment.
+# A "#" character and those after it on a line will be considered as a comment
+#Code	Coding Scheme Designator	Display
+#
+DEMO-H and P	1.3.6.1.4.1.21367.100.1	History and Physical
+DEMO-Consult	1.3.6.1.4.1.21367.100.1	Consultation
+DEMO-Ref	1.3.6.1.4.1.21367.100.1	Referral
+DEMO-Eval	1.3.6.1.4.1.21367.100.1	Evaluation
+DEMO-Procedure	1.3.6.1.4.1.21367.100.1	Procedure
+DEMO-Summary	1.3.6.1.4.1.21367.100.1	Summary
+DEMO-Pt Mgmt	1.3.6.1.4.1.21367.100.1	Patient Management
+DEMO-Lab	1.3.6.1.4.1.21367.100.1	Lab Result
+DEMO-Department Rpt	1.3.6.1.4.1.21367.100.1	Departmental Report
+DEMO-Workflow	1.3.6.1.4.1.21367.100.1	Workflow Document
+DEMO-Security	1.3.6.1.4.1.21367.100.1	Security
+DEMO-Index	1.3.6.1.4.1.21367.100.1	Document Index
+DEMO-Ext-Summary	1.3.6.1.4.1.21367.100.1	Summary for External / Non Clinical Use

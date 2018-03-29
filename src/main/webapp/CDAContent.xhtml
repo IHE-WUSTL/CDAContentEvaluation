@@ -1,0 +1,834 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition>
+	<ice:panelTabSet selectedIndex="#{sessionBean.selectedTab}"
+		tabChangeListener="#{sessionBean.tabChangeListener}">
+
+		<!-- Evaluate CDA Document Content -->
+		<ice:panelTab label="Evaluate CDA Document Content">
+			<ice:panelGroup>
+
+				<!--  Document Type Selection  -->
+
+				<ice:panelGrid columns="2">
+					<ice:outputLabel value="CDA document to evaluate:" for="mt" />
+					<ice:selectOneMenu id="mt" value="#{sessionBean.documentType}"
+						partialSubmit="true"
+						title="Select CDA document type to be evaluated"
+						valueChangeListener="#{sessionBean.documentTypeChange}">
+						<f:selectItems value="#{applicationBean.documents}" />
+					</ice:selectOneMenu>
+				</ice:panelGrid>
+
+				<!--  Document Entry -->
+
+				<ice:panelCollapsible id="mep" expanded="#{sessionBean.mepExpanded}">
+					<f:facet name="header">
+						<ice:panelGroup>
+							<ice:outputText id="meph"
+								title="hide/show Document being Evaluated"
+								value="Document being Evaluated" />
+						</ice:panelGroup>
+					</f:facet>
+					<ice:panelGrid columns="2">
+						<ice:inputTextarea id="me" value="#{sessionBean.testDoc}"
+							style="width: 600px; height: 300px" />
+						<ice:panelGrid columns="1">
+							<ace:fileEntry relativePath="/upload/"
+								title="Choose CDA document file on your computer to upload for evaluation"
+								fileEntryListener="#{sessionBean.loadFile}" maxFileCount="1"
+								maxFileCountMessage="Select only one file" maxFileSize="1048576"
+								maxFileSizeMessage="File is too large" />
+							<h:commandButton type="submit"
+								title="upload chosen file for evaluation"
+								value="load document file" />
+							<ice:commandButton value="Evaluate Document"
+								title="Evaluate test document against 'gold standard' document using assertions"
+								actionListener="#{sessionBean.evaluateDocument}" />
+							<ice:commandButton value="Reset"
+								title="clear test document and evaluation results"
+								actionListener="#{sessionBean.evaluateContentReset}" />
+						</ice:panelGrid>
+					</ice:panelGrid>
+				</ice:panelCollapsible>
+
+				<!--  Document Evaluation Results -->
+
+				<ice:panelCollapsible id="mrp" expanded="#{sessionBean.mrpExpanded}">
+					<f:facet name="header">
+						<ice:panelGroup>
+							<ice:outputText value=" Evaluation Results"
+								title="hide/show Evaluatin results" />
+						</ice:panelGroup>
+					</f:facet>
+					<ice:panelGroup
+						style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+						<pre style="width: 100%">
+               #{sessionBean.testDocEvaluation}
+               </pre>
+					</ice:panelGroup>
+				</ice:panelCollapsible>
+
+				<!-- Test Assertions -->
+
+				<ice:panelCollapsible id="tap" expanded="#{sessionBean.tapExpanded}">
+					<f:facet name="header">
+						<ice:panelGroup>
+							<ice:outputText value=" Test Assertions "
+								title="hide/show Assertions used to evaluate this document type" />
+						</ice:panelGroup>
+					</f:facet>
+					<ice:panelGroup
+						style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+						<pre style="width: 100%">
+               #{sessionBean.docValidator.assertMsg}
+               </pre>
+					</ice:panelGroup>
+				</ice:panelCollapsible>
+
+				<!-- "Gold Standard" Document -->
+
+				<ice:panelCollapsible id="gmp" expanded="#{sessionBean.gmpExpanded}">
+					<f:facet name="header">
+						<ice:panelGroup>
+							<ice:outputText value=" Document Standard"
+								title="hide/show 'gold standard' document" />
+						</ice:panelGroup>
+					</f:facet>
+					<ice:panelGroup
+						style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+						<pre style="width: 100%">
+               #{sessionBean.docValidator.goldDoc}
+               </pre>
+					</ice:panelGroup>
+				</ice:panelCollapsible>
+
+			</ice:panelGroup>
+		</ice:panelTab>
+
+		<!-- Retrieve stored sample documents -->
+		<ice:panelTab label="View / Retrieve vendor sample documents"
+			rendered="#{sessionBean.loggedIn}">
+
+			<!-- Filters for extract -->
+			<ice:panelCollapsible id="sampleFilterPanel"
+				expanded="#{sessionBean.sampleFilterPanelExpanded}">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="Document filters" />
+					</ice:panelGroup>
+				</f:facet>
+				<ice:panelGrid columns="2">
+
+					<!-- Filters -->
+					<ice:panelGrid columns="3">
+
+						<!-- Filter on Organization code -->
+						<ice:outputLabel value="Organization Code" for="sfoc" />
+						<ice:selectOneMenu id="sfoc" value="#{sessionBean.sfOrganization}"
+							partialSubmit="true"
+							valueChangeListener="#{sessionBean.sfoChangeListener}">
+							<f:selectItems value="#{applicationBean.filterOrganizations}" />
+						</ice:selectOneMenu>
+						<ice:commandButton value="Clear Organization Code"
+							style="width:100%"
+							actionListener="#{sessionBean.clearSfOganization}" />
+
+						<!-- Filter on system code -->
+						<ice:outputLabel value="System Code" for="sfsc" />
+						<ice:selectOneMenu id="sfsc"
+							disabled="#{sessionBean.sfSystemsDisabled}"
+							value="#{sessionBean.sfSystem}" partialSubmit="true">
+							<f:selectItems value="#{sessionBean.sfSystems}" />
+						</ice:selectOneMenu>
+						<ice:commandButton value="Clear System Code" style="width:100%"
+							disabled="#{sessionBean.sfSystemsDisabled}"
+							actionListener="#{sessionBean.clearSfSystem}" />
+
+						<!-- Filter on system code -->
+						<ice:outputLabel value="Document Type" for="sfmt" />
+						<ice:selectOneMenu id="sfmt" value="#{sessionBean.sfDocType}"
+							partialSubmit="true">
+							<f:selectItems value="#{applicationBean.filterDocTypes}" />
+						</ice:selectOneMenu>
+						<ice:commandButton value="Clear Document Type" style="width:100%"
+							actionListener="#{sessionBean.clearSfDocType}" />
+
+						<!-- Max records to return -->
+						<ice:outputLabel value="Max rows" for="sfmr" />
+						<ice:inputText id="sfmr" size="5" maxlength="5"
+							partialSubmit="true" value="#{sessionBean.sfMaxRows}" />
+						<ice:commandButton value="Reset max rows" style="width:100%"
+							actionListener="#{sessionBean.clearSfMaxRows}" />
+
+
+					</ice:panelGrid>
+					<!-- Cmd buttons to reset filters, query -->
+					<ice:panelGrid columns="1">
+						<ice:commandButton value="Reset All Filters"
+							action="#{sessionBean.sampleReset}" />
+						<ice:commandButton value="Query using these settings"
+							action="#{sessionBean.sfQuery}" />
+					</ice:panelGrid>
+				</ice:panelGrid>
+
+			</ice:panelCollapsible>
+			<!-- EO Filters panel -->
+
+			<!-- Document list -->
+			<ice:panelCollapsible id="sampleListPanel"
+				expanded="#{sessionBean.sampleListPanelExpanded}">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="Document List" />
+					</ice:panelGroup>
+				</f:facet>
+				<ice:panelGrid columns="3">
+					<ice:dataTable id="sampleList" var="row"
+						value="#{sessionBean.samples}" scrollable="true"
+						scrollHeight="400px" columnWidths="100px,100px,300px,300px"
+						sortColumn="#{sessionBean.sortColumnName}"
+						sortAscending="#{sessionBean.ascending}">
+						<f:facet name="header">
+							<ice:outputText value="Documents" style="text-align: center" />
+						</f:facet>
+
+
+						<ice:column style="width:100px">
+
+							<ice:rowSelector id="selected" multiple="true"
+								value="#{row.selected}" preStyleOnSelection="true" />
+
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="orgc">
+									<ice:outputText value="Organization Code" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{row.organization}" />
+						</ice:column>
+
+						<ice:column style="width: 100px">
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="sysc">
+									<ice:outputText value="System Code" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{row.system}" />
+						</ice:column>
+
+						<ice:column style="width: 300px">
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="mtc">
+									<ice:outputText value="Document Type" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{row.documentType}" />
+						</ice:column>
+
+						<ice:column style="width: 300px">
+							<f:facet name="header">
+								<ice:commandSortHeader columnName="mtn">
+									<ice:outputText value="Notes" />
+								</ice:commandSortHeader>
+							</f:facet>
+							<ice:outputText value="#{row.notes}" />
+						</ice:column>
+
+					</ice:dataTable>
+					<ice:panelGrid columns="1">
+						<ice:commandButton value="Select all Documents"
+							title="Select all documents in table"
+							disabled="#{sessionBean.sampleSelectAllDisabled}"
+							action="#{sessionBean.sampleSelectAll}" />
+						<ice:commandButton value="De-select all Documents"
+							title="De-select all documents in table"
+							disabled="#{sessionBean.sampleDeselectAllDisabled}"
+							action="#{sessionBean.sampleDeselectAll}" />
+						<ice:commandButton value="Display selected Document"
+							title="Display the selected document"
+							disabled="#{sessionBean.sampleDisplayDocumentDisabled}"
+							action="#{sessionBean.sampleDisplayDocument}" />
+						<!-- 	<ice:commandButton value="Download Selected Document(s)"
+							title="Download zip file of selected documents"
+							rendered="#{sessionBean.noSampleZipFile}"
+							disabled="#{sessionBean.sampleDownloadDocumentDisabled}"
+							action="#{sessionBean.sampleDownloadDocument}" /> -->
+
+						<ice:commandButton value="Delete selected Document(s)"
+							title="Delete all documents selected in table (cannot be undone)"
+							rendered="#{sessionBean.monitor}"
+							disabled="#{sessionBean.sampleDownloadDocumentDisabled}"
+							action="#{sessionBean.sampleDeleteDocument}" />
+						<ice:selectOneMenu id="sampleLocation"
+							value="#{sessionBean.exportSelection}"
+							title="Select an export location" partialSubmit="true"
+							valueChangeListener="#{sessionBean.checkSelection}">
+							<f:selectItems value="#{applicationBean.selectExportType}" />
+						</ice:selectOneMenu>
+						<ice:commandButton value="Reset"
+							title="Clear selection / Reset screen"
+							rendered="#{sessionBean.sampleZipFile}"
+							action="#{sessionBean.sampleReset}" />
+						<ice:commandButton value="Export"
+							title="Export Documents"
+							disabled="false"
+							actionListener="#{sessionBean.sampleExport}" />
+						<ice:outputResource id="sampleZip"
+							rendered="#{sessionBean.sampleZipFile}"
+							resource="#{sessionBean.sampleZipResource}" attachment="true"
+							fileName="#{sessionBean.sampleZipFileName}"
+							label="Download sample CDA document zip file" />
+					</ice:panelGrid>
+					<ice:panelGrid style="text-align:left">
+						<ice:panelGroup>
+							<ice:outputLabel for="sampleToEmail" value="Recipient Address:"
+								rendered="#{sessionBean.emailSelected}" />
+							<ice:inputText id="sampleToEmail" size="60"
+								rendered="#{sessionBean.emailSelected}"
+								value="#{sessionBean.toAddress}" title="To Address" />
+						</ice:panelGroup>
+						<ice:panelGroup>
+							<ice:outputLabel for="sampleSubject" value="Subject:"
+								rendered="#{sessionBean.emailSelected}" />
+							<ice:inputText id="sampleSubject" size="60"
+								rendered="#{sessionBean.emailSelected}"
+								value="#{sessionBean.subject}" />
+						</ice:panelGroup>
+						<ice:panelGroup>
+
+							<ice:inputTextarea id="sampleBody" cols="60" rows="15"
+								rendered="#{sessionBean.emailSelected}"
+								value="#{sessionBean.body}" />
+						</ice:panelGroup>
+						<ice:panelGrid columns="2" rendered="#{sessionBean.XDSBSelected}">
+							<ice:outputLabel value = "(XDS) Provide and Register Endpoint" />
+							<ice:selectOneMenu id="xdsburl" value="#{sessionBean.provideAndRegisterEndpoint}"
+								partialSubmit="true"
+								title="Select (XDS) Provide and Register Endpoint"
+								valueChangeListener="#{sessionBean.dummy}">
+								<f:selectItems value="#{applicationBean.selectProvideAndRegisterEndpoints}" />
+							</ice:selectOneMenu>
+						
+						</ice:panelGrid>
+
+<!--
+						<ice:panelGroup>
+							<ice:outputLabel for="samplePatientId" value="PatientId: XX"
+								rendered="#{sessionBean.XDSBSelected}" />
+							<ice:inputText id="samplePatientId"
+								rendered="#{sessionBean.XDSBSelected}"
+								value="#{sessionBean.patientId}" />
+						</ice:panelGroup>
+-->
+<!--
+						<ice:panelGroup>
+							<ice:outputLabel for="sampleSourcePatientId"
+								value="SourcePatientId:" rendered="#{sessionBean.XDSBSelected}" />
+							<ice:inputText id="sampleSourcePatientId"
+								rendered="#{sessionBean.XDSBSelected}"
+								value="#{sessionBean.sourcePatientId}" />
+						</ice:panelGroup>
+-->
+<!--
+						<ace:simpleSelectOneMenu id="sampleClassCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.classCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('classCode')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="sampleConfidentialityCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.confidentialityCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('confidentialityCode')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="sampleFormatCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.formatCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('formatCode')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="sampleHealthCareFacilityTypeCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.healthCareFacilityTypeCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('healthcareFacilityTypeCode')}" />
+						</ace:simpleSelectOneMenu>
+-->
+<!--
+						<ice:panelGroup>
+							<ice:outputLabel for="sampleHomeCommunityId"
+								value="HomeCommunityId:" rendered="#{sessionBean.XDSBSelected}" />
+							<ice:inputText id="sampleHomeCommunityId"
+								rendered="#{sessionBean.XDSBSelected}"
+								value="#{sessionBean.homeCommunityId}" />
+						</ice:panelGroup>
+-->
+<!--
+						<ice:panelGroup>
+							<ice:outputLabel for="sampleLanguageCode" value="LanguageCode:"
+								rendered="#{sessionBean.XDSBSelected}" />
+							<ice:inputText id="sampleLanguageCode"
+								rendered="#{sessionBean.XDSBSelected}"
+								value="#{sessionBean.languageCode}" />
+						</ice:panelGroup>
+						<ace:simpleSelectOneMenu id="sampleMimeType"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.mimeType}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('mimeType')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="samplePracticeSettingCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.practiceSettingCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('practiceSettingCode')}" />
+						</ace:simpleSelectOneMenu>
+-->
+<!--
+						<ace:simpleSelectOneMenu id="sampleTypeCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.typeCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('typeCode')}" />
+						</ace:simpleSelectOneMenu>
+-->
+					</ice:panelGrid>
+				</ice:panelGrid>
+			</ice:panelCollapsible>
+
+			<!-- Sample Display Panel -->
+			<ice:panelCollapsible id="sampleDisplayPanel"
+				expanded="#{sessionBean.sampleDisplayPanelExpanded}">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="Document Display"
+							title="hide/show selected document" />
+					</ice:panelGroup>
+				</f:facet>
+				<ice:panelGroup
+					style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+					<pre style="width: 100%">
+               #{sessionBean.selectedDoc}
+               </pre>
+				</ice:panelGroup>
+			</ice:panelCollapsible>
+
+		</ice:panelTab>
+
+		<!-- View / Retrieve 'Gold Standard' documents -->
+		<ice:panelTab label="View / Retrieve 'Gold Standard' documents">
+
+			<!-- Document list -->
+			<ice:panelCollapsible id="goldListPanel"
+				expanded="#{sessionBean.goldListPanelExpanded}">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="'Gold Standard' Document List" />
+					</ice:panelGroup>
+				</f:facet>
+				<ice:panelGrid columns="3">
+					<ice:dataTable id="goldList" var="row"
+						value="#{sessionBean.goldDocs}" scrollable="true"
+						scrollHeight="400px" columnWidths="400px">
+						<f:facet name="header">
+							<ice:outputText value="Documents" style="text-align: center" />
+						</f:facet>
+
+
+						<ice:column style="width:400px">
+
+							<ice:rowSelector id="selected" multiple="true"
+								value="#{row.selected}" preStyleOnSelection="true" />
+
+							<ice:outputText value="#{row.documentName}" />
+						</ice:column>
+
+					</ice:dataTable>
+					<ice:panelGrid columns="1">
+						<ice:commandButton value="Select all Documents"
+							disabled="#{sessionBean.goldSelectAllDisabled}"
+							action="#{sessionBean.goldSelectAll}" />
+						<ice:commandButton value="De-select all Documents"
+							disabled="#{sessionBean.goldDeselectAllDisabled}"
+							action="#{sessionBean.goldDeselectAll}" />
+						<ice:commandButton value="Display selected Document"
+							disabled="#{sessionBean.goldDisplayDisabled}"
+							action="#{sessionBean.goldDisplayDocument}" />
+						<ice:commandButton value="Display selected Document Assertions"
+							disabled="#{sessionBean.goldDisplayDisabled}"
+							action="#{sessionBean.goldDisplayAsserts}">
+						</ice:commandButton>
+						<ice:selectOneMenu id="goldLocation"
+							value="#{sessionBean.exportSelection}"
+							title="Select an export location" partialSubmit="true"
+							valueChangeListener="#{sessionBean.checkSelection}">
+							<f:selectItems value="#{applicationBean.selectExportType}" />
+
+						</ice:selectOneMenu>
+						<ice:commandButton value="Reset"
+							rendered="#{sessionBean.goldZipFile}"
+							action="#{sessionBean.goldZipReset}" />
+
+						<ice:commandButton value="Export" disabled="false"
+							actionListener="#{sessionBean.goldExport}" />
+						<ice:outputResource id="goldZip"
+							rendered="#{sessionBean.goldZipFile}"
+							resource="#{sessionBean.goldZipResource}" attachment="true"
+							fileName="#{sessionBean.goldZipFileName}"
+							label="Download zip file of selected document(s)" />
+
+
+
+					</ice:panelGrid>
+
+					<h:panelGrid style="text-align:left">
+						<ice:panelGroup>
+							<ice:outputLabel for="goldToEmail" value="Recipient Address:"
+								rendered="#{sessionBean.emailSelected}" />
+							<ice:inputText id="goldToEmail" size="60"
+								rendered="#{sessionBean.emailSelected}"
+								value="#{sessionBean.toAddress}" title="To Address" />
+						</ice:panelGroup>
+						<ice:panelGroup>
+							<ice:outputLabel for="goldSubject" value="Subject:"
+								rendered="#{sessionBean.emailSelected}" />
+							<ice:inputText id="goldSubject" size="60"
+								rendered="#{sessionBean.emailSelected}"
+								value="#{sessionBean.subject}" />
+						</ice:panelGroup>
+						<ice:panelGroup>
+
+							<ice:inputTextarea id="goldBody" cols="60" rows="15"
+								rendered="#{sessionBean.emailSelected}"
+								value="#{sessionBean.body}" />
+						</ice:panelGroup>
+						<ice:panelGroup>
+							<ice:outputLabel for="goldPatientId" value="PatientId:"
+								rendered="#{sessionBean.XDSBSelected}" />
+							<ice:inputText id="goldPatientId"
+								rendered="#{sessionBean.XDSBSelected}"
+								value="#{sessionBean.patientId}" />
+						</ice:panelGroup>
+						<ice:panelGroup>
+							<ice:outputLabel for="goldSourcePatientId"
+								value="SourcePatientId:" rendered="#{sessionBean.XDSBSelected}" />
+							<ice:inputText id="goldSourcePatientId"
+								rendered="#{sessionBean.XDSBSelected}"
+								value="#{sessionBean.sourcePatientId}" />
+						</ice:panelGroup>
+						<ace:simpleSelectOneMenu id="goldClassCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.classCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('classCode')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="goldConfidentialityCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.confidentialityCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('confidentialityCode')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="goldFormatCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.formatCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('formatCode')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="goldHealthCareFacilityTypeCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.healthCareFacilityTypeCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('healthcareFacilityTypeCode')}" />
+						</ace:simpleSelectOneMenu>
+						<ice:panelGroup>
+							<ice:outputLabel for="goldHomeCommunityId"
+								value="HomeCommunityId:" rendered="#{sessionBean.XDSBSelected}" />
+							<ice:inputText id="goldHomeCommunityId"
+								rendered="#{sessionBean.XDSBSelected}"
+								value="#{sessionBean.homeCommunityId}" />
+						</ice:panelGroup>
+						<ice:panelGroup>
+							<ice:outputLabel for="goldLanguageCode" value="LanguageCode:"
+								rendered="#{sessionBean.XDSBSelected}" />
+							<ice:inputText id="goldLanguageCode"
+								rendered="#{sessionBean.XDSBSelected}"
+								value="#{sessionBean.languageCode}" />
+						</ice:panelGroup>
+						<ace:simpleSelectOneMenu id="goldMimeType"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.mimeType}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('mimeType')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="goldPracticeSettingCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.practiceSettingCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('practiceSettingCode')}" />
+						</ace:simpleSelectOneMenu>
+						<ace:simpleSelectOneMenu id="goldTypeCode"
+							rendered="#{sessionBean.XDSBSelected}"
+							value="#{sessionBean.typeCode}">
+							<f:selectItems
+								value="#{applicationBean.XDSBMenus.get('typeCode')}" />
+						</ace:simpleSelectOneMenu>
+					</h:panelGrid>
+
+				</ice:panelGrid>
+			</ice:panelCollapsible>
+
+			<!-- Gold Document Display -->
+			<ice:panelCollapsible id="goldDisplayDocument"
+				expanded="#{sessionBean.goldDocPanelExpanded}">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="'Gold Standard' Document Display"
+							title="hide/show selected document" />
+					</ice:panelGroup>
+				</f:facet>
+				<ice:panelGroup
+					style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+					<pre style="width: 100%">
+               #{sessionBean.goldSelectedDoc}
+               		</pre>
+				</ice:panelGroup>
+			</ice:panelCollapsible>
+
+			<!-- Gold Display Asserts -->
+			<ice:panelCollapsible id="goldDisplayAsserts"
+				expanded="#{sessionBean.goldAssertPanelExpanded}">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="'Gold Standard' Assertions Display"
+							title="hide/show selected assertions" />
+					</ice:panelGroup>
+				</f:facet>
+				<ice:panelGroup
+					style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+					<pre style="width: 100%">
+               #{sessionBean.goldSelectedAsserts}
+               </pre>
+				</ice:panelGroup>
+			</ice:panelCollapsible>
+
+		</ice:panelTab>
+
+		<!-- Store sample documents -->
+		<ice:panelTab rendered="#{sessionBean.monitor}"
+			label="Store sample documents">
+
+			<ice:panelGrid columns="1" cellpadding="5px"
+				rendered="#{sessionBean.mb.documentStored}">
+					Document has been stored.
+					<ice:commandButton value="Return to Store task"
+					title="Click to clear screen and return to the 'Store sample documents' tab"
+					actionListener="#{sessionBean.mb.returnToStore}" />
+
+				<ice:commandButton value="Return to Evaluate task"
+					title="Click to clear screen and return to the 'Evaluate CDA Document Content' tab"
+					actionListener="#{sessionBean.mb.returnToEvaluate}" />
+			</ice:panelGrid>
+
+			<ice:panelGroup rendered="#{!sessionBean.mb.documentStored}">
+
+				<!-- Document storage -->
+				<ice:panelGrid columns="2">
+
+					<!--  Storage parameters -->
+					<ice:panelGrid columns="2">
+						<ice:outputLabel value="Organization:" for="org" />
+						<ice:selectOneMenu id="org" value="#{sessionBean.mb.organization}"
+							partialSubmit="true" style="#{sessionBean.mb.organizationStyle}"
+							title="Select organization which generated the document"
+							valueChangeListener="#{sessionBean.mb.organizationChange}">
+							<f:selectItems value="#{applicationBean.selectOrganizations}" />
+						</ice:selectOneMenu>
+
+						<ice:outputText value="System:" />
+						<ice:selectOneMenu rendered="#{!sessionBean.mb.oneSystem}"
+							id="syst" partialSubmit="true" value="#{sessionBean.mb.system}"
+							style="#{sessionBean.mb.systemStyle}"
+							title="Select System which generated the document"
+							valueChangeListener="#{sessionBean.mb.systemChange}">
+							<f:selectItems value="#{sessionBean.mb.systems}" />
+						</ice:selectOneMenu>
+						<ice:outputText rendered="#{sessionBean.mb.oneSystem}"
+							value="#{sessionBean.mb.system}" />
+
+						<ice:outputLabel value = "(XDS Red) Patient ID" />
+						<ice:selectOneMenu id="patid" value="#{sessionBean.mb.patientID}"
+							partialSubmit="true" style="#{sessionBean.mb.patientIDStyle}"
+							title="Select (XDS Red) Patient ID"
+							valueChangeListener="#{sessionBean.mb.dummy}">
+							<f:selectItems value="#{sessionBean.mb.patientIDs}" />
+						</ice:selectOneMenu>
+
+						<ice:outputLabel value="CDA document to store" for="mt" />
+						<ice:selectOneMenu id="sdt" value="#{sessionBean.mb.documentType}"
+							partialSubmit="true" style="#{sessionBean.mb.documentTypeStyle}"
+							title="Select Document Type for document"
+							valueChangeListener="#{sessionBean.mb.documentChange}">
+							<f:selectItems value="#{applicationBean.selectDocTypes}" />
+						</ice:selectOneMenu>
+
+						<ice:outputLabel value = "(XDS) formatCode" />
+						<ice:selectOneMenu id="sfc" value="#{sessionBean.mb.formatCode}"
+							partialSubmit="true" style="#{sessionBean.mb.formatCodeStyle}"
+							title="Select (XDS) formatCode"
+							valueChangeListener="#{sessionBean.mb.dummy}">
+							<f:selectItems value="#{sessionBean.mb.selectFormatCodes}" />
+						</ice:selectOneMenu>
+
+						<ice:outputLabel value = "(XDS) typeCode" />
+						<ice:selectOneMenu id="stc" value="#{sessionBean.mb.typeCode}"
+							partialSubmit="true" style="#{sessionBean.mb.typeCodeStyle}"
+							title="Select (XDS) typeCode"
+							valueChangeListener="#{sessionBean.mb.dummy}">
+							<f:selectItems value="#{sessionBean.mb.selectTypeCodes}" />
+						</ice:selectOneMenu>
+
+						<ice:outputLabel value = "(XDS) classCode" />
+						<ice:selectOneMenu id="scc" value="#{sessionBean.mb.classCode}"
+							partialSubmit="true" style="#{sessionBean.mb.classCodeStyle}"
+							title="Select (XDS) classCode"
+							valueChangeListener="#{sessionBean.mb.dummy}">
+							<f:selectItems value="#{sessionBean.mb.selectClassCodes}" />
+						</ice:selectOneMenu>
+					</ice:panelGrid>
+
+					<!-- Notes store button -->
+					<ice:panelGrid columns="1">
+						<ice:outputLabel for="notes" value="Notes, Comments" />
+						<ice:inputTextarea id="notes" value="#{sessionBean.mb.notes}"
+							valueChangeListener="#{sessionBean.mb.dummy}"
+							style="width:400px; height:200px" />
+						<ice:panelGrid columns="2">
+							<ice:commandButton value="Store document"
+								title="Click to store this document with parameters and notes"
+								actionListener="#{sessionBean.mb.storeDocument}" />
+							<ice:commandButton value="Cancel"
+								title="Click to cancel store and reset screen"
+								actionListener="#{sessionBean.mb.reset}" />
+						</ice:panelGrid>
+					</ice:panelGrid>
+
+				</ice:panelGrid>
+				<!-- EO Document Storage -->
+
+				<!-- Document to store-->
+
+				<ice:panelCollapsible id="msg"
+					expanded="#{sessionBean.mb.msgExpanded}">
+					<f:facet name="header">
+						<ice:panelGroup>
+							<ice:outputText value="Document to Store"
+								title="hide/show document to store" />
+						</ice:panelGroup>
+					</f:facet>
+					<ice:panelGroup
+						style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+						<ice:inputTextarea id="sme" value="#{sessionBean.mb.testDoc}"
+							partialSubmit="true"
+							valueChangeListener="#{sessionBean.mb.dummy}"
+							style="#{sessionBean.mb.documentStyle}" />
+					</ice:panelGroup>
+				</ice:panelCollapsible>
+
+			</ice:panelGroup>
+
+
+		</ice:panelTab>
+
+		<!-- CDA document builder 
+		     Turned off at this point. To turn on, replace "rendered=false"
+		     with "rendered="#{sessionBean.monitor}" 
+		-->
+		
+		<ice:panelTab label="CDA Builder" rendered="false">
+
+			<!-- Document Template Selector -->
+			<ice:panelCollapsible id="templateSelector" expanded="true"
+				toggleOnClick="false">
+				<f:facet name="header">
+					<ice:outputText value="Template" />
+				</f:facet>
+				<ice:selectOneMenu id="documentBuilderTypes" partialSubmit="true"
+					value="#{sessionBean.documentBuilderSelection}"
+					valueChangeListener="#{sessionBean.documentBuilderSelected}">
+					<f:selectItems value="#{applicationBean.documentBuilderTypes}" />
+				</ice:selectOneMenu>
+			</ice:panelCollapsible>
+
+			<!-- Sections -->
+			<ice:panelCollapsible id="builder"
+				expanded="#{sessionBean.isTemplateSelected()}" toggleOnClick="false">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="Sections" />
+					</ice:panelGroup>
+				</f:facet>
+				<ace:dataTable id="cdabuilder" value="#{sessionBean.cdaBuilderRows}"
+					var="row" scrollHeight="500" scrollable="true">
+					<ace:column id="section" headerText="Section" style="width: 10%">
+						<h:outputText value="#{row.section}" />
+					</ace:column>
+					<ace:column id="opt" headerText="Opt" style="width: 5%">
+						<h:outputText value="#{row.opt}" />
+					</ace:column>
+					<ace:column id="templateId" headerText="Template ID"
+						style="width: 20%">
+						<h:outputText value="#{row.templateId}" />
+					</ace:column>
+					<ace:column id="xml" headerText="Section Type">
+						<ace:accordion id="selections" collapsible="true"
+							paneChangeListener="#{row.paneChange}"
+							activeIndex="#{row.active}" autoHeight="false">
+							<ace:accordionPane id="pane" title="#{row.selected()}">
+								<ice:panelGrid style="text-align:left">
+									<ice:selectOneMenu id="documentBuilderSelections"
+										partialSubmit="true" value="#{row.selectedType}"
+										valueChangeListener="#{row.selectionMade}">
+										<f:selectItems value="#{row.selections}" />
+									</ice:selectOneMenu>
+									<br />
+									<ice:outputLabel value="Section Code" style="font-weight:bold" />
+									<ice:panelGroup
+										style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+										<pre style="width: 0%">#{row.XML}</pre>
+									</ice:panelGroup>
+								</ice:panelGrid>
+							</ace:accordionPane>
+						</ace:accordion>
+					</ace:column>
+				</ace:dataTable>
+				<ice:commandButton value="Refresh Document View"
+					actionListener="#{sessionBean.checkDocument}" />
+			</ice:panelCollapsible>
+
+			<!-- XML Display -->
+			<ice:panelCollapsible id="display"
+				expanded="#{sessionBean.isTemplateSelected()}" toggleOnClick="false">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="Document Display" />
+					</ice:panelGroup>
+				</f:facet>
+				<ice:panelGroup
+					style="border: solid 1px; margin-top: 1px; padding: 2px; background-color: #cac8c8;">
+					<pre style="width: 0%">#{sessionBean.document}</pre>
+				</ice:panelGroup>
+			</ice:panelCollapsible>
+		</ice:panelTab>
+
+	</ice:panelTabSet>
+</ui:composition>
+</html>

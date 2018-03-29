@@ -1,0 +1,51 @@
+<section>
+   <templateId root="2.16.840.1.113883.10.20.1.2"/>
+   <templateId root="1.3.6.1.4.1.19376.1.5.3.1.3.13"/>
+   <id extension="AllergiesAndOtherAdverseReactions_2010-1" root="1.3.6.1.4.1.21367.2010.1.2.777"/>
+   <code code="48765-2" codeSystem="2.16.840.1.113883.6.1"
+      codeSystemName="LOINC" displayName="ALLERGIES, ADVERSE REACTIONS, ALERTS"/>
+   <title>Allergies and Adverse Reactions</title>
+   <text>
+      <content ID="ALG_1">No Known Allergies.</content>
+   </text>
+   <entry typeCode="COMP">
+      <act classCode="ACT" moodCode="EVN">
+         <templateId root="2.16.840.1.113883.10.20.1.27"/>
+         <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.1"/>
+         <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5.3"/>
+         <id extension="Alert_Concern_1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+         <code nullFlavor="NA"/>
+         <statusCode code="active"/>
+         <effectiveTime>
+            <low value="20111031"/>
+         </effectiveTime>
+         <entryRelationship inversionInd="false" typeCode="SUBJ">
+            <observation classCode="OBS" moodCode="EVN" negationInd="false">
+               <templateId root="2.16.840.1.113883.10.20.1.28"/>
+               <templateId root="2.16.840.1.113883.10.20.1.18"/>
+               <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.5"/>
+               <templateId root="1.3.6.1.4.1.19376.1.5.3.1.4.6"/>
+               <id extension="Alert_Observation_1" root="1.3.6.1.4.1.21367.2010.1.2.777.3"/>
+               <!--<code code="DALG" codeSystem="2.16.840.1.113883.5.4" codeSystemName="HL7 - ObservationIntoleranceType" displayName="Drug Allergy"/>-->
+               <code code="420134006"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  codeSystemName="SNOMED CT" displayName="Propensity to adverse reactions (disorder)"/>
+               <text>
+                  <reference value="#ALG_1"/>
+               </text>
+               <statusCode code="completed"/>
+               <effectiveTime>
+                  <low value="20060330"/>
+               </effectiveTime>
+               <value code="160244002"
+                  codeSystem="2.16.840.1.113883.6.96"
+                  displayName="No Known Allergies" xsi:type="CD">
+                  <originalText>
+                     <reference value="#ALG_1"/>
+                  </originalText>
+               </value>
+            </observation>
+         </entryRelationship>
+      </act>
+   </entry>
+</section>

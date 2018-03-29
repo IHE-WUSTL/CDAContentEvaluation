@@ -1,0 +1,53 @@
+# documentTypes.txt                                        				R Moulton
+# A listing of the CDA document types which may be stored in the archive for
+# vendor downloading. Leading and trailing white space will be trimmed. Any line
+# whose first non white space character is "#" will be ignored as a comment.
+# A "#" character and those after it on a line will be considered as a comment
+ITI, BPPC, no scanned document
+ITI, BPPC, with scanned document
+ITI, (XDS-SD) Scanned PDF
+ITI, (XDS-SD) Scanned Text
+ITI, XDW workflow doc
+Lab, XD-Lab
+PCC, APE
+PCC, APHP
+PCC, APL
+PCC, APS
+PCC, CTNN
+PCC, EDPN
+PCC, EDR
+PCC, ENS
+PCC, ETS
+PCC, IC
+PCC, ITS
+PCC, LDHP
+PCC, LDS
+PCC, MDS
+PCC, NDS
+PCC, NN
+PCC, PPOC
+PCC, PPVS
+PCC, RECON
+PCC, TN
+PCC, TRS
+PCC, XDS-MS Discharge
+PCC, XDS-MS Referral
+PCC, XPHR Extract
+PCC, XPHR Update
+QRPH, Clinical Research Document prepop Data
+QRPH, EHCP
+QRPH, LDS VR
+QRPH, PRPH-Ca
+QRPH, QME-EH
+Rad, Image Manifest (KON)
+Rad, PDF
+Rad, Text wrapped in CDA
+C-CDA, Continuity of Care Document
+C-CDA, Consultation Note
+C-CDA, Diagnostic Imaging Report
+C-CDA, Discharge Summary
+C-CDA, History and Physical
+C-CDA, Operative Note
+C-CDA, Progress Note
+C-CDA, Procedure Note
+C-CDA, Unstructured Document

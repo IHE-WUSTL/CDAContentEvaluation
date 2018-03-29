@@ -1,0 +1,8 @@
+# pnrEndpoints.txt                                        				S Moore
+# A listing of XDS.b Provide and Register ednpoints. These are typically Repositories
+# but can also be Document Receivers.
+# Leading and trailing white space will be trimmed.
+# Any line whose first non white space character is "#" will be ignored as a comment.
+# A "#" character and those after it on a line will be considered as a comment
+Connectathon XDS.b Registry/Repository	http://localhost:9180/xdstools2/sim/6352f8bd-8243-459c-9cd4-b4c6f9b9c7fd/rep/prb
+docshare.wustl.edu Registry/Repository	http://docshare.wustl.edu/xdstools2/sim/831793e9-852c-44f8-a3f1-b421664fbf0d/reg/sq
